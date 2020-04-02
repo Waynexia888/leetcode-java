@@ -34,5 +34,9 @@
   * overflow
 * float/double:（优先用double）
   * double a = 1; System.out.println(a / 2) -> 0.5; double自动转换1 -> 1.0
+* Lintcode 练习：
+  * 37 Reverse 3-digit Integer
+  * 9 Fizz Buzz
+  * 1 A + B Problem
  
 
