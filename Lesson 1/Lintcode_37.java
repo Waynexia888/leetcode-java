@@ -26,3 +26,5 @@ public class Solution {
         int b = number / 10 % 10; // 2
         int c = number / 100 % 10; // 1
         return a * 100 + b * 10 + c;
+    }
+}
