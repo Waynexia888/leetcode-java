@@ -24,6 +24,15 @@
   * 功能强大
 * Homebrew install java 教程  -> https://pandacodez.com/tutorial/install-latest-jdk-java-on-mac-using-homebrew/
 * Reverse 3-digit integer -> http://www.lintcode.com/en/problem/reverse-3-digit-integer/
+* 8种基本数据类型：
+  * 整型： byte, short, int(eg: 123), long（eg：123L， 123l）
+  * 浮点型： float(eg: 1.23f, 1.23F)， double（eg: 1.23)
+  * 字符型： char
+  * 布尔型： boolean
+* 引用数据类型：
+  * 数组
+  * class（类）
+  * interface（接口）
 * 变量
   * 变量名 - camelCase ： 1 使用英文单词； 2 第一个单词全部小写，后面的单词首字母大写
   * 变量类型： 1 整型：int； 2 浮点型：float，double； 3 布尔型：boolean； 4 字符型：char
