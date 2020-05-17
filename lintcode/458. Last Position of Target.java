@@ -1,4 +1,4 @@
-public class 458. Last Position of Target Solution {
+public class Last_Position_of_Target_Solution {
     /**
      * @param nums: An integer array sorted in ascending order
      * @param target: An integer

@@ -1,4 +1,4 @@
-public class 457. Classical Binary Search Solution {
+public class Classical_Binary_Search_Solution {
     /**
      * @param nums: An integer array sorted in ascending order
      * @param target: An integer

@@ -1,4 +1,4 @@
-public class 14. First Position of Target Solution {
+public class First_Position_of_Target_Solution {
        /**
      * @param nums: The integer array.
      * @param target: Target to find.
