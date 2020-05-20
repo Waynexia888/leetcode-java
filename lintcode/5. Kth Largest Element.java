@@ -6,7 +6,7 @@ public class Kth_Largest_Element {
      */
     public int kthLargestElement(int k, int[] nums) {
         // quick select 算法
-        // (平均)时间复杂度：O(n)
+        // (平均)时间复杂度：O(n), 空间复杂度O(1)
         if (nums == null || nums.length == 0) {
             return -1;
         }
