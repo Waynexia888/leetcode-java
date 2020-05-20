@@ -58,3 +58,61 @@ public class Sort_Integers {
     // 归并算法参考资料，
     // https://www.cnblogs.com/chengxiao/p/6194356.html
 }
+
+
+/////////////////////////////////////////////////////////////
+// 下面是快速排序算法的实现, Quick Sort
+
+public class Solution {
+    /**
+     * @param A: an integer array
+     * @return: nothing
+     */
+    public void sortIntegers(int[] A) {
+        // 实现快速排序Quick Sort
+        if (A == null || A.length == 0) {
+            return;
+        }
+
+        quickSort(A, 0, A.length - 1);
+    }
+
+    private void quickSort(int[] A, int start, int end) {
+        if (start >= end) {
+            return;
+        }
+
+        // 设置两根指针left，right，以及标杆pivot
+        int left = start, right = end;
+
+        // 注意点1: pivot, get value not index, pivot设置好后不能改变
+        int pivot = A[(start + end) / 2];
+
+        // 注意点2: left <= right, not left < right
+        while (left <= right) {
+
+            // 找到不属于pivot左半部分的元素
+            // 注意点3: A[left] < pivot, not <=
+            // 比如： [1, 1, 1, 1, 1, 1, 1]
+            while (left <= right && A[left] < pivot) {
+                left++;
+            }
+            // 找到不属于pivot右半部分的元素
+            while (left <= right && A[right] > pivot) {
+                right--;
+            }
+            // 如果找到了上述的元素， 在这儿swap一下
+            if (left <= right) {
+                int temp = A[left];
+                A[left] = A[right];
+                A[right] = temp;
+                left++;
+                right--;
+            }
+        }
+        // 当left 在 right右边的时候，即left > right, 上述while loop失效
+        // 调用左半部分的区间，以及右半部分的区间
+        quickSort(A, start, right);
+        quickSort(A, left, end);
+    }
+}
