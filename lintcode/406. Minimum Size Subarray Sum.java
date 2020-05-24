@@ -7,7 +7,7 @@ public class Minimum_Size_Subarray_Sum {
     public int minimumSize(int[] nums, int s) {
         // 同向双指针问题：
         // 首先设置一个滑动窗口
-
+        // 时间复杂度O(n), 空间复杂度O(1)
         if (nums == null || nums.length < 1) {
             return -1;
         }
