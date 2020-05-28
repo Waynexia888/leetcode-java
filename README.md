@@ -221,6 +221,36 @@
   * string.endsWith("world")   // true
   * string.indexOf('l')   // 2， 返回最早出现'l'这个字符的下标， 如果没找到，就返回-1
   * string.indexOf("llo")  // 2， 返回最早出现"llo"这个字符串的下标， 如果没找到，就返回-1
+* 面试真题： Valid Palindrome 
+  * 先考虑没有特殊字符和大写的情况
+  * 将大写字符转成小写字符
+  * 过滤掉特殊字符
+* 面试真题：String to int
+  * 先考虑正数情况
+  * 在考虑负数情况
+  * 最后考虑有overflow的情况
+* 什么是面向对象（object-oriented）？
+  * 面向对象是一种世界观：世间万物皆为对象
+  * 面向对象是一种程序设计方式
+* 什么是对象（Object）？
+  * 在面向对象的世界观中： 世间万物皆为对象
+  * 属性 & 行为
+* 什么是类（class）？
+  * 类是对象的蓝图
+  * 在Java中，类是对现实事物的抽象
+  * 命名规则：首字母大写（UpperCamelCase）， eg：MyClass
+  * 用类创建对象， eg： Student student = new Student();
+* 什么是实例（instance）？
+  * 实例就是对象： eg： Student student = new Student();
+  * 在上面的代码中， student 是Student类的一个对象（实例）
+* 什么是OOP(Object-Oriented Programming)?
+  * 用对象构建程序
+* 成员变量（member variable）
+  * 又叫域（field）
+  * 表示对象的属性
+  * 命名规则和变量名相同
+
+
   
   
 
