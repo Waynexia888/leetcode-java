@@ -29,6 +29,7 @@
   * 浮点型： float(eg: 1.23f, 1.23F)， double（eg: 1.23)
   * 字符型： char
   * 布尔型： boolean
+  * 在Java中，可以进行数据类型转换，“小”的数据类型可以默认转化成“大”的数据类型，而“大”的数据类型需要强制转化成“小”的类型
 * 引用数据类型：
   * 数组
   * class（类）
@@ -59,6 +60,7 @@
   * char ch0 = 'a'; char ch1 = 'b'
   * char类型的数据：用单引号包起来的字符. 如果是双引号，代表字符串
   * int b = (int)ch0; System.out.println(b) -> 97
+  * 字符有两种，普通字符和转义字符。转义字符是以反斜杠()开头的字符，常常用来表示那些无法直接打印出来的字符。字符在计算机底层以整数的形式存储，每个字符对应的整数叫做unicode编码。字符之间的运算，以及字符与整数之间的运算都换转化为整数的运算
 * ASCII & Unicode编码
   * http://www.asciitable.com/
   * https://unicode-table.com/en/#control-character
@@ -142,9 +144,16 @@
   *     if (score[i] < 60) continue;
   *     System.out.println(score[i]);
   * }
+* break语句会直接退出循环，continue语句会提前结束本轮循环
 * i++ 和 ++i 区别：
   * int i = 0; int j = ++i; System.out.println(j); // j = 1, i = 1; -> 先给i加上1以后赋值给j， 所以j=1
   * int l = 0; int k = l++; System.out.println(k); // k = 0, i = 1；-> 先把l赋值给k， 然后再给l加上1， 所以k=0，l=1 
+  * i++和++i都是自增运算，结果都会把i的值自增1，但是i++返回的值是自增之前的值，++i返回的值是自增之后的值
+* 选择排序(Selection Sort)
+  * 选择整个数组中最小的元素与第一个元素交换
+  * 每一次选取数组中剩下元素的最小值和前面的值交换
+  * 时间复杂度O(n^2)
+  * 参考资料：https://blog.csdn.net/jianyuerensheng/article/details/51254311
 * Lintcode 练习：
   * 479 Second Max of Array
   * 478 Simple Calculator
