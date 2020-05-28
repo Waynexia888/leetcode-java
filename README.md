@@ -155,4 +155,65 @@
   * 491 Palindrome Number
   * 521 Remove Duplicate Numbers in Array
   * 二维数组如何遍历？ 
+### Lession 3: 函数，字符串，面向对象入门
+* 函数(function)的定义
+  * 具有特定功能的代码段
+  * 增加代码复用（code reuse）
+  * 增强程序可读性（readability）
+  * 将功能封装，给出接口供调用
+* 函数返回类型（return type）
+  * void返回类型的函数可以没有return语句
+  * return值的类型必须与函数返回类型匹配
+* 函数的调用
+  * 给定输入，返回输出
+  * 程序执行流程
+  * 把有返回类型的函数当作一个值来使用
+* 函数名（function name）
+  * 命名规则同变量命名方式
+  * 使用驼峰命名法命名，推荐以动词开头
+* 参数（parameters）
+  * 可以理解为函数的输入
+  * 数目不限，也可以没有参数（0个参数）
+  * 每个参数都需要指定参数类型
+* String字符串及其常用操作
+  * String是Java中的内置类
+  * 可以在JDK中找到， package java.lang; public final class String
+  * string中的转义字符： 参考资料 https://blog.csdn.net/caoxiaohong1005/article/details/78570311
+* String的不可变性（Immutable）
+  * 没有setCharAt()方法
+  * 一旦创建就无法改变其值
+  * 如果需要改变值就得创建一个新的String对象
+  * 在String类中使用字符数组保存字符串，是final修饰，因此是不可变的：private final char value[];
+  * 对String对象的任何改变都不会影响到原来的对象，它一般是生成一个新的对象然后进行操作的
+* 修改String？ - StringBuilder
+  * StringBuilder sb = new StringBuilder("...")
+  * StringBuilder sb = new StringBuilder()  // 什么都不传，相当于空字符串""
+  * sb.append("hello");  // "hello"
+  * sb.setCharAt(index: 1, ch: 'a');  // "hallo"
+  * sb.deleteCharAt(0)   // "allo"
+  * sb.toString();  // Returns a string representing the data in this sequence, 将数据以字符串的形式返回
+  * 参考资料： https://blog.csdn.net/awq520tt1314/article/details/77493675
+* String的比较和其他常用方法
+  * String.equals()
+  * 不能用"=" 来判断两个String的值是否相等，因为"="是基本数据类型， 是直接存在内存中的
+* 字符串的运算：连接（concat）
+  * "+"
+  * 字符串可以和任何类型的变量进行连接操作
+* String的常用方法
+  * String string = "hello world";
+  * string.substring(6);  // "world", [6, len)
+  * string.substring(2, 5);  // "llo", [2, 5)
+  * char[] charArray = string.toCharArray();  // 把字符串转变成一个字符数组
+  * string.length();  // 11
+  * string.isEmpty();
+  * string.charAt(6)  // 'w'
+  * string.concat("!"); // "hello world" + "!"
+  * string.startsWith("hello") // true
+  * string.endsWith("world")   // true
+  * string.indexOf('l')   // 2， 返回最早出现'l'这个字符的下标， 如果没找到，就返回-1
+  * string.indexOf("llo")  // 2， 返回最早出现"llo"这个字符串的下标， 如果没找到，就返回-1
+  
+  
 
+  
+  
