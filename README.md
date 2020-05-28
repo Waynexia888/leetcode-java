@@ -170,6 +170,7 @@
   * 增加代码复用（code reuse）
   * 增强程序可读性（readability）
   * 将功能封装，给出接口供调用
+  * Java是一门强类型的编程语言，函数需要指明输入参数的类型和返回值类型，函数可以没有参数，也可以有多个参数
 * 函数返回类型（return type）
   * void返回类型的函数可以没有return语句
   * return值的类型必须与函数返回类型匹配
@@ -232,6 +233,7 @@
 * 什么是面向对象（object-oriented）？
   * 面向对象是一种世界观：世间万物皆为对象
   * 面向对象是一种程序设计方式
+  * 易维护， 易复用， 易扩展， 易灵活
 * 什么是对象（Object）？
   * 在面向对象的世界观中： 世间万物皆为对象
   * 属性 & 行为
@@ -249,6 +251,42 @@
   * 又叫域（field）
   * 表示对象的属性
   * 命名规则和变量名相同
+  * Java面向对象编程中，属性的命名规则是lower camel case，与普通变量一致。类的命名规则是upper camel case。方法的命名和普通函数的命名要求一致
+* 成员函数（member function）
+  * 又叫方法（method）
+  * 表示对象的行为
+  * 命名时，第一个单词必须是动词
+* 构造函数（constructor）
+  * 一种对对象进行初始化（initialize）的函数
+  * 在对象被用new关键字创建时自动调用， Student student = new Student();
+  * 其主要功能是用来在创建对象时初始化对象
+* 构造函数特点
+  * 必须与所属类同名
+  * 每个类可以有一个以上的构造函数
+  * 构造函数可以有0个，1个或1个以上的参数
+  * 构造函数没有返回值
+  * 构造函数总是伴随着new操作一起调用
+  * 构造函数可以不写
+* Java的访问权限修饰符(Access Level Modifier)：控制访问权限
+  * privite（仅类自己可以访问），通过setter（写入，赋值）和getter（读取）就可以访问和修改属性了
+  * protected(类class，同包package，子函数subclass都可以访问）
+  * public（所有人都可以访问）
+  * https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html
+* this
+  * 指当前这个对象本身
+  * 常用来防止名称重复
+  * https://docs.oracle.com/javase/tutorial/java/javaOO/thiskey.html
+* 面向对象的三大特征
+  * 封装（Encapsulation）
+  * 继承（Inheritance）
+  * 多态（Polymorphism）
+* 封装
+  * 数据被保护在抽象数据类型的内部，只保留一些对外接口使之与外部发生联系
+  * 将属性和行为封装成一个类，并尽可能隐蔽类（对象）的内部细节，对外形成一个边界，只保留有限的对外接口使之与外部发生联系
+  * 优点： 改变程序的组织方式， 增加代码的复用率， 提高程序开发效率
+  
+  
+  
 
 
   
