@@ -29,6 +29,7 @@
   * 浮点型： float(eg: 1.23f, 1.23F)， double（eg: 1.23)
   * 字符型： char
   * 布尔型： boolean
+  * 在Java中，可以进行数据类型转换，“小”的数据类型可以默认转化成“大”的数据类型，而“大”的数据类型需要强制转化成“小”的类型
 * 引用数据类型：
   * 数组
   * class（类）
@@ -59,6 +60,7 @@
   * char ch0 = 'a'; char ch1 = 'b'
   * char类型的数据：用单引号包起来的字符. 如果是双引号，代表字符串
   * int b = (int)ch0; System.out.println(b) -> 97
+  * 字符有两种，普通字符和转义字符。转义字符是以反斜杠()开头的字符，常常用来表示那些无法直接打印出来的字符。字符在计算机底层以整数的形式存储，每个字符对应的整数叫做unicode编码。字符之间的运算，以及字符与整数之间的运算都换转化为整数的运算
 * ASCII & Unicode编码
   * http://www.asciitable.com/
   * https://unicode-table.com/en/#control-character
@@ -142,9 +144,16 @@
   *     if (score[i] < 60) continue;
   *     System.out.println(score[i]);
   * }
+* break语句会直接退出循环，continue语句会提前结束本轮循环
 * i++ 和 ++i 区别：
   * int i = 0; int j = ++i; System.out.println(j); // j = 1, i = 1; -> 先给i加上1以后赋值给j， 所以j=1
   * int l = 0; int k = l++; System.out.println(k); // k = 0, i = 1；-> 先把l赋值给k， 然后再给l加上1， 所以k=0，l=1 
+  * i++和++i都是自增运算，结果都会把i的值自增1，但是i++返回的值是自增之前的值，++i返回的值是自增之后的值
+* 选择排序(Selection Sort)
+  * 选择整个数组中最小的元素与第一个元素交换
+  * 每一次选取数组中剩下元素的最小值和前面的值交换
+  * 时间复杂度O(n^2)
+  * 参考资料：https://blog.csdn.net/jianyuerensheng/article/details/51254311
 * Lintcode 练习：
   * 479 Second Max of Array
   * 478 Simple Calculator
@@ -155,4 +164,133 @@
   * 491 Palindrome Number
   * 521 Remove Duplicate Numbers in Array
   * 二维数组如何遍历？ 
+### Lession 3: 函数，字符串，面向对象入门
+* 函数(function)的定义
+  * 具有特定功能的代码段
+  * 增加代码复用（code reuse）
+  * 增强程序可读性（readability）
+  * 将功能封装，给出接口供调用
+  * Java是一门强类型的编程语言，函数需要指明输入参数的类型和返回值类型，函数可以没有参数，也可以有多个参数
+* 函数返回类型（return type）
+  * void返回类型的函数可以没有return语句
+  * return值的类型必须与函数返回类型匹配
+* 函数的调用
+  * 给定输入，返回输出
+  * 程序执行流程
+  * 把有返回类型的函数当作一个值来使用
+* 函数名（function name）
+  * 命名规则同变量命名方式
+  * 使用驼峰命名法命名，推荐以动词开头
+* 参数（parameters）
+  * 可以理解为函数的输入
+  * 数目不限，也可以没有参数（0个参数）
+  * 每个参数都需要指定参数类型
+* String字符串及其常用操作
+  * String是Java中的内置类
+  * 可以在JDK中找到， package java.lang; public final class String
+  * string中的转义字符： 参考资料 https://blog.csdn.net/caoxiaohong1005/article/details/78570311
+* String的不可变性（Immutable）
+  * 没有setCharAt()方法
+  * 一旦创建就无法改变其值
+  * 如果需要改变值就得创建一个新的String对象
+  * 在String类中使用字符数组保存字符串，是final修饰，因此是不可变的：private final char value[];
+  * 对String对象的任何改变都不会影响到原来的对象，它一般是生成一个新的对象然后进行操作的
+* 修改String？ - StringBuilder
+  * StringBuilder sb = new StringBuilder("...")
+  * StringBuilder sb = new StringBuilder()  // 什么都不传，相当于空字符串""
+  * sb.append("hello");  // "hello"
+  * sb.setCharAt(index: 1, ch: 'a');  // "hallo"
+  * sb.deleteCharAt(0)   // "allo"
+  * sb.toString();  // Returns a string representing the data in this sequence, 将数据以字符串的形式返回
+  * 参考资料： https://blog.csdn.net/awq520tt1314/article/details/77493675
+* String的比较和其他常用方法
+  * String.equals()
+  * 不能用"=" 来判断两个String的值是否相等，因为"="是基本数据类型， 是直接存在内存中的
+* 字符串的运算：连接（concat）
+  * "+"
+  * 字符串可以和任何类型的变量进行连接操作
+* String的常用方法
+  * String string = "hello world";
+  * string.substring(6);  // "world", [6, len)
+  * string.substring(2, 5);  // "llo", [2, 5)
+  * char[] charArray = string.toCharArray();  // 把字符串转变成一个字符数组
+  * string.length();  // 11
+  * string.isEmpty();
+  * string.charAt(6)  // 'w'
+  * string.concat("!"); // "hello world" + "!"
+  * string.startsWith("hello") // true
+  * string.endsWith("world")   // true
+  * string.indexOf('l')   // 2， 返回最早出现'l'这个字符的下标， 如果没找到，就返回-1
+  * string.indexOf("llo")  // 2， 返回最早出现"llo"这个字符串的下标， 如果没找到，就返回-1
+* 面试真题： Valid Palindrome 
+  * 先考虑没有特殊字符和大写的情况
+  * 将大写字符转成小写字符
+  * 过滤掉特殊字符
+* 面试真题：String to int
+  * 先考虑正数情况
+  * 在考虑负数情况
+  * 最后考虑有overflow的情况
+* 什么是面向对象（object-oriented）？
+  * 面向对象是一种世界观：世间万物皆为对象
+  * 面向对象是一种程序设计方式
+  * 易维护， 易复用， 易扩展， 易灵活
+* 什么是对象（Object）？
+  * 在面向对象的世界观中： 世间万物皆为对象
+  * 属性 & 行为
+* 什么是类（class）？
+  * 类是对象的蓝图
+  * 在Java中，类是对现实事物的抽象
+  * 命名规则：首字母大写（UpperCamelCase）， eg：MyClass
+  * 用类创建对象， eg： Student student = new Student();
+* 什么是实例（instance）？
+  * 实例就是对象： eg： Student student = new Student();
+  * 在上面的代码中， student 是Student类的一个对象（实例）
+* 什么是OOP(Object-Oriented Programming)?
+  * 用对象构建程序
+* 成员变量（member variable）
+  * 又叫域（field）
+  * 表示对象的属性
+  * 命名规则和变量名相同
+  * Java面向对象编程中，属性的命名规则是lower camel case，与普通变量一致。类的命名规则是upper camel case。方法的命名和普通函数的命名要求一致
+* 成员函数（member function）
+  * 又叫方法（method）
+  * 表示对象的行为
+  * 命名时，第一个单词必须是动词
+* 构造函数（constructor）
+  * 一种对对象进行初始化（initialize）的函数
+  * 在对象被用new关键字创建时自动调用， Student student = new Student();
+  * 其主要功能是用来在创建对象时初始化对象
+* 构造函数特点
+  * 必须与所属类同名
+  * 每个类可以有一个以上的构造函数
+  * 构造函数可以有0个，1个或1个以上的参数
+  * 构造函数没有返回值
+  * 构造函数总是伴随着new操作一起调用
+  * 构造函数可以不写
+* Java的访问权限修饰符(Access Level Modifier)：控制访问权限
+  * privite（仅类自己可以访问），通过setter（写入，赋值）和getter（读取）就可以访问和修改属性了
+  * protected(类class，同包package，子函数subclass都可以访问）
+  * public（所有人都可以访问）
+  * https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html
+* this
+  * 指当前这个对象本身
+  * 常用来防止名称重复
+  * https://docs.oracle.com/javase/tutorial/java/javaOO/thiskey.html
+* 面向对象的三大特征
+  * 封装（Encapsulation）
+  * 继承（Inheritance）
+  * 多态（Polymorphism）
+* 封装
+  * 数据被保护在抽象数据类型的内部，只保留一些对外接口使之与外部发生联系
+  * 将属性和行为封装成一个类，并尽可能隐蔽类（对象）的内部细节，对外形成一个边界，只保留有限的对外接口使之与外部发生联系
+  * 优点： 改变程序的组织方式， 增加代码的复用率， 提高程序开发效率
+  
+  
+  
 
+
+  
+  
+
+  
+  
