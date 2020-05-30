@@ -295,7 +295,7 @@
   * 内存分区： 不同内存区域的职责不同；
   * - 堆区（Heap-based/Dynamic memory allocation）：保存通过new操作符创建的object
   * - 栈区（Stack-based memory allocation）： 局部变量，函数调用等  
-* 什么是reference?
+* Reference的原理 -> Copy address
   * reference本质上就是一个变量，只不过这个变量和基本数据类型的变量不太一样，它里面存的是object的地址，而普通基本数据类型的变量存储的就是值
   * 引用好比遥控器，对象好比电视机
   * 赋值操作（引用型变量  = 对象）， 通过地址，找到object本身，然后访问object的属性和方法
@@ -308,8 +308,34 @@
   * 比如int num； 相当于在内存中开辟了一块空间； int num2 = 10； 相当于开辟了一块空间，并且把值10存进去； num = num2； 我们把num2所在的内存空间的值拷贝一份，然后放在num那块空间中， 赋值完后，num 和 num2不再有任何联系，只是值一样； num2 = 20，num2空间里的值是20， num 空间里的值依然是10；
 * 总结：
   * Java中的变量分为基本数据类型变量和引用型变量两种，基本数据类型变量中直接存储值，引用型变量通过地址和堆中的object产生关联。在赋值操作中，都是将变量中存储的内容进行复制，只是基本类型的变量直接复制值，引用型变量复制的是地址，本质是相同的
-  
-  
+* 什么是null？
+  * 空的引用， 没有引用任何对象
+  * int number = null, 这是错误的写法，int是基本数据类型
+  * Student student = null; 这是对的
+  * 空指针异常: NullPointerException; eg: Student student = null; int studentScore = student.score; student.printScore();
+  * 如何防止？ 检查方法：看点号之前的引用变量是否可能为null
+  * 注意以下两种情况：1 引用类型的数组创建时，每个数组元素会被初始化为null； 2 没有初始化的引用类型成员变量会被自动初始化为null
+* 数组
+  * 数组变量本身是个引用，会在堆空间开辟一片空间来存储数组的内容
+* 字符串
+  * String是一个类
+  * String对象有特殊的创建方法；String str1 = "abcd"; String str2 = new String("abcd");
+  * String类型不可变（Immutable）
+  * 只能用String.equals()来比较是否相等，不能用"=="
+* 什么是数据结构？ Data Structure
+  * 数据
+  * 结构
+  * 操作
+* ArrayList及其操作：
+  * ArrayList<Integer> arrayList = new ArrayList();  // generic 泛型， Integer 是 int的类（Class）
+  * 增删改查CRUD
+  * arrayList.add(10);  // 增加操作， [10]
+  * arrayList.add(0, 3); index: 0, element: 3; // [3, 10]
+  * arrayList.get(1);  // 读取操作, index: 1; 返回的是10
+  * arrayList.set(1, 2); // 修改操作， index：1， element：2；[3, 2]
+  * arrayList.delete(1);  // 删除方法， index: 1, 返回的是[3]
+  * arrayList.clear(); // 把所有元素清空， 返回的是[]
+  * List<Integer> arrayList = new ArrayList();   // List是ArrayList实现的一个接口，因此可以使用List所有的方法
 
 
   
