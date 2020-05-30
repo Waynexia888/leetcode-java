@@ -367,13 +367,30 @@
   *     cur = cur.next;
   * }
 * 链表的插入（insert）
-  * 插入位置在中间; ListNode pre = head; for (int i = 0; i < location - 1; i++){ pre = pre.next; }; 
+  * 插入位置在中间; if location > 0; ListNode pre = head; for (int i = 0; i < location - 1; i++){ pre = pre.next; }; 
   * ListNode newNode = new ListNode(value); newNode.next = pre.next; pre.next = newNode;
-  * 插入位置在头部; ListNode newNode = new ListNode(value); newNode.next = head; head = newNode; (LinkedList里本身存在一个head这个全局变量属性的，所以需要把head设置成newNode）
-                                                             
-
-  
-  
-
-  
+  * 插入位置在头部; if location = 0; ListNode newNode = new ListNode(value); newNode.next = head; head = newNode; (LinkedList里本身存在一个head这个全局变量属性的，所以需要把head设置成newNode）
+* 链表的删除（delete）
+  * 删除操作有返回值的；ListNode res = null;
+  * 删除位置在中间; if location > 0; ListNode pre = head; for (int i = 0; i < location - 1; i++){ pre = pre.next; }; res = pre.next; pre.next = pre.next.next;
+  * 删除位置在头部; if location == 0; res = head; head = head.next;                                                         
+  * 返回返回值res.val即可; return res.val;
+* 链表的查找（find）
+  * 有返回值的
+  * ListNode cur = head; for (int i = 0; i < location; i++){ cur = cur.next; }; return cur.val;
+* 链表的更新（update）
+  * ListNode cur = head; for (int i = 0; i < location; i++){ cur = cur.next; }; cur.val = newValue;  
+* 神奇的dummy节点
+  * 在整个链表前插入一个特殊的哨兵节点（dummy不是head头节点，而是head头节点前面的一个节点）
+  * 使得对于链表头部的操作和中间操作的逻辑相同
+  * 由于在头部前面插入了一个dummy节点，此时不再存在head这个变量了， dummy.next 表示head节点                                               
+  * ListNode dummy = new ListNode(-1)
+  * 查找操作: ListNode cur = dummy.next; for (int i = 0; i < location; i++){ cur = cur.next; }; return cur.val;                   * 更新操作: ListNode cur = dummy.next; for (int i = 0; i < location; i++){ cur = cur.next; }; cur.val = newValue;               * 插入操作:  ListNode pre = dummy; for (int i = 0; i < location; i++){ pre = pre.next; }; ListNode newNode = new ListNode(value); newNode.next = pre.next; pre.next = newNode;
+  * 删除操作: ListNode res = null; ListNode pre = dummy; for (int i = 0; i < location; i++){ pre = pre.next; }; res = pre.next; pre.next = pre.next.next; return res.val;
+* 算法的时间复杂度 (Time Complexity)
+  * 评估算法时间效率的标准
+  * "执行时间" 和输入问题规模之间的关系
+  * 不是实际时间，而是单位时间                                                                                
+  * ArrayList: add(0,val) -> O(n); add(n, val) -> O(1); add(average) -> O(n); get -> O(1); set -> O(1)
+  * LinkedList: add(0,val) -> O(1); add(n, val) -> O(n); add(average) -> O(n); get -> O(n); set -> O(n)
   
