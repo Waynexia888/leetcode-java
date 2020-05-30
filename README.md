@@ -335,7 +335,18 @@
   * arrayList.delete(1);  // 删除方法， index: 1, 返回的是[3]
   * arrayList.clear(); // 把所有元素清空， 返回的是[]
   * List<Integer> arrayList = new ArrayList();   // List是ArrayList实现的一个接口，因此可以使用List所有的方法
-
+### Lession 5: 链表和时间复杂度
+* 链表的定义和构建（Linked List）
+  * 由节点构成的列表
+  * 线性的数据结构
+  * class ListNode {
+  *     public int val;
+  *     public ListNode next;
+  * }
+  * ArrayList和LinkedList都是线性的数据结构，区别在于数据的组织方式不同。两种数据结构各有其应用场景，没有优劣之分
+  * ListNode node1 = new ListNode(1);
+  * node1.next = node2;
+ 
 
   
   
