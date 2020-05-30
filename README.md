@@ -368,7 +368,8 @@
   * }
 * 链表的插入（insert）
   * 插入位置在中间; ListNode pre = head; for (int i = 0; i < location - 1; i++){ pre = pre.next; }; 
-  * ListNode newNode = new ListNode(value); newNode.next = pre.next; pre.next = newNode;                                       * 插入位置在头部; ListNode newNode = new ListNode(value); newNode.next = head; head = newNode; (LinkedList里本身存在一个head这个全局变量属性的，所以需要把head设置成newNode）
+  * ListNode newNode = new ListNode(value); newNode.next = pre.next; pre.next = newNode;
+  * 插入位置在头部; ListNode newNode = new ListNode(value); newNode.next = head; head = newNode; (LinkedList里本身存在一个head这个全局变量属性的，所以需要把head设置成newNode）
                                                              
 
   
