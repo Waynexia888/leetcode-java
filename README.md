@@ -25,9 +25,9 @@
 * Homebrew install java 教程  -> https://pandacodez.com/tutorial/install-latest-jdk-java-on-mac-using-homebrew/
 * Reverse 3-digit integer -> http://www.lintcode.com/en/problem/reverse-3-digit-integer/
 * 8种基本数据类型：
-  * 整型： byte, short, int(eg: 123), long（eg：123L， 123l）
-  * 浮点型： float(eg: 1.23f, 1.23F)， double（eg: 1.23)
-  * 字符型： char
+  * 整型： byte（8位）, short（16位）, int(32位，eg: 123), long（64位，eg：123L， 123l）
+  * 浮点型： float(32位，eg: 1.23f, 1.23F)， double（64位， eg: 1.23)
+  * 字符型： char（16位）
   * 布尔型： boolean
   * 在Java中，可以进行数据类型转换，“小”的数据类型可以默认转化成“大”的数据类型，而“大”的数据类型需要强制转化成“小”的类型
 * 引用数据类型：
@@ -284,6 +284,28 @@
   * 数据被保护在抽象数据类型的内部，只保留一些对外接口使之与外部发生联系
   * 将属性和行为封装成一个类，并尽可能隐蔽类（对象）的内部细节，对外形成一个边界，只保留有限的对外接口使之与外部发生联系
   * 优点： 改变程序的组织方式， 增加代码的复用率， 提高程序开发效率
+### Lession 4: 引用和数据结构
+* Java的内存模型
+  * bit, 二进制位， 取值要么是0， 要么是1
+  * 1GB = 1024MB, 1MB = 1024KB， 1KB = 1024B
+  * 1B（Byte，字节） = 8bits（八个二进制位）， byte取值是0～255之间，也就是说一共156个取值，相当于2^8,即八个二进制位
+  * 内存： 巨大的数组，每个格子包含1Byte，也就是8 bits；每个格子都有唯一的地址，可以通过这个地址直接得到那个格子的数据； 地址长度为32位或64位，取决于操作系统的位数。
+  * 可以把Java的内存空间想象成一个大的数组，可以在这个数组中存储数据，内存的访问是需要根据内存地址进行的。同时，无论硬件上的内存还是内存空间的大小都是有限的，32位操作系统中，内存的地址用一个32bits的整数表示，最多可以表示2^32个内存空间(每个内存空间大小为1Byte)，所以32位系统可用内存空间最大为4GB
+  * 变量存储： eg：int num1 = 2; int是32位，32位整数 00000000｜00000000｜00000000｜00000010， 分成4个字节存放在相邻的4个格子中
+  * 内存分区： 不同内存区域的职责不同；
+  * - 堆区（Heap-based/Dynamic memory allocation）：保存通过new操作符创建的object
+  * - 栈区（Stack-based memory allocation）： 局部变量，函数调用等  
+* 什么是reference?
+  * reference本质上就是一个变量，只不过这个变量和基本数据类型的变量不太一样，它里面存的是object的地址，而普通基本数据类型的变量存储的就是值
+  * 引用好比遥控器，对象好比电视机
+  * 赋值操作（引用型变量  = 对象）， 通过地址，找到object本身，然后访问object的属性和方法
+  * birthday myBirthday = new birthday(); new birthday() -> 实例化一个birthday类的对象
+  * 实例化一个birthday类的对象，并声明一个引用型变量myBirthday，并让变量myBirthday引用对象，也就是将对象的地址赋值给变量myBirthday
+  * 对象模型 
+  * eg: Student student1 = new Student(); student1.name = "Tom"; Student student2 = student1; 这里student2相当于引用了student1的对象模型
+* 基本数据类型的赋值：
+  * 当定义了一个基本数据类型变量时，就等于我们在内存当中申请了一块空间，并规定这块空间中存储的内容为指定的变量类型
+  * 比如int num； 相当于在内存中开辟了一块空间； int num2 = 10； 相当于开辟了一块空间，并且把值10存进去； num = num2； 我们把num2所在的内存空间的值拷贝一份，然后放在num那块空间中， 赋值完后，num 和 num2不再有任何联系，只是值一样； num2 = 20，num2空间里的值是20， num 空间里的值依然是10；
   
   
   
