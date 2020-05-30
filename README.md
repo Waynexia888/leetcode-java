@@ -326,7 +326,7 @@
   * 结构
   * 操作
 * ArrayList及其操作：
-  * ArrayList<Integer> arrayList = new ArrayList();  // generic 泛型， Integer 是 int的类（Class）
+  * ArrayList<Integer> arrayList = new ArrayList<>();  // generic 泛型， Integer 是 int的类（Class）
   * 增删改查CRUD
   * arrayList.add(10);  // 增加操作， [10]
   * arrayList.add(0, 3); index: 0, element: 3; // [3, 10]
@@ -346,6 +346,14 @@
   * ArrayList和LinkedList都是线性的数据结构，区别在于数据的组织方式不同。两种数据结构各有其应用场景，没有优劣之分
   * ListNode node1 = new ListNode(1);
   * node1.next = node2;
+  * 链表的头结点可以代表整个链表，因为当知道链表的头结点后，可以通过每个节点的next引用访问下一个节点，进而访问整个链表。面试题中的链表题目都只会给出链表的头节点的引用，去操作链表，所以使用Java内置的链表是没意义的。链表在操作系统的内存管理中起着重要作用，所以是非常有意义的数据结构
+* Java中自带的LinkedList方法（面试中用不到）
+  * LinkedList<Integer> linkedList = new LinkedList<>();
+  * linkedList.add(10);
+  * linkedList.add(0, 12);
+  * linkedList.get(1);
+  * linkedList.remove(0);
+  * linkedList.set(0, 13);
 * 链表的操作
   * 遍历（traverse）
   * 插入（insert）
@@ -358,6 +366,10 @@
   *     System.out.print(cur.val + " ");
   *     cur = cur.next;
   * }
+* 链表的插入（insert）
+  * 插入位置在中间; ListNode pre = head; for (int i = 0; i < location - 1; i++){ pre = pre.next; }; 
+  * ListNode newNode = new ListNode(value); newNode.next = pre.next; pre.next = newNode;                                       * 插入位置在头部; ListNode newNode = new ListNode(value); newNode.next = head; head = newNode; (LinkedList里本身存在一个head这个全局变量属性的，所以需要把head设置成newNode）
+                                                             
 
   
   
