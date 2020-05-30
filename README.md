@@ -346,7 +346,18 @@
   * ArrayList和LinkedList都是线性的数据结构，区别在于数据的组织方式不同。两种数据结构各有其应用场景，没有优劣之分
   * ListNode node1 = new ListNode(1);
   * node1.next = node2;
- 
+* 链表的操作
+  * 遍历（traverse）
+  * 插入（insert）
+  * 查找（find）
+  * 删除（delete）
+  * 更新（update）
+* 链表的遍历（traverse）
+  * ListNode cur = node1;
+  * while (cur != null) {
+  *     System.out.print(cur.val + " ");
+  *     cur = cur.next;
+  * }
 
   
   
