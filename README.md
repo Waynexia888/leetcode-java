@@ -25,9 +25,9 @@
 * Homebrew install java 教程  -> https://pandacodez.com/tutorial/install-latest-jdk-java-on-mac-using-homebrew/
 * Reverse 3-digit integer -> http://www.lintcode.com/en/problem/reverse-3-digit-integer/
 * 8种基本数据类型：
-  * 整型： byte, short, int(eg: 123), long（eg：123L， 123l）
-  * 浮点型： float(eg: 1.23f, 1.23F)， double（eg: 1.23)
-  * 字符型： char
+  * 整型： byte（8位）, short（16位）, int(32位，eg: 123), long（64位，eg：123L， 123l）
+  * 浮点型： float(32位，eg: 1.23f, 1.23F)， double（64位， eg: 1.23)
+  * 字符型： char（16位）
   * 布尔型： boolean
   * 在Java中，可以进行数据类型转换，“小”的数据类型可以默认转化成“大”的数据类型，而“大”的数据类型需要强制转化成“小”的类型
 * 引用数据类型：
@@ -284,13 +284,113 @@
   * 数据被保护在抽象数据类型的内部，只保留一些对外接口使之与外部发生联系
   * 将属性和行为封装成一个类，并尽可能隐蔽类（对象）的内部细节，对外形成一个边界，只保留有限的对外接口使之与外部发生联系
   * 优点： 改变程序的组织方式， 增加代码的复用率， 提高程序开发效率
-  
-  
-  
-
-
-  
-  
-
-  
+### Lession 4: 引用和数据结构
+* Java的内存模型
+  * bit, 二进制位， 取值要么是0， 要么是1
+  * 1GB = 1024MB, 1MB = 1024KB， 1KB = 1024B
+  * 1B（Byte，字节） = 8bits（八个二进制位）， byte取值是0～255之间，也就是说一共156个取值，相当于2^8,即八个二进制位
+  * 内存： 巨大的数组，每个格子包含1Byte，也就是8 bits；每个格子都有唯一的地址，可以通过这个地址直接得到那个格子的数据； 地址长度为32位或64位，取决于操作系统的位数。
+  * 可以把Java的内存空间想象成一个大的数组，可以在这个数组中存储数据，内存的访问是需要根据内存地址进行的。同时，无论硬件上的内存还是内存空间的大小都是有限的，32位操作系统中，内存的地址用一个32bits的整数表示，最多可以表示2^32个内存空间(每个内存空间大小为1Byte)，所以32位系统可用内存空间最大为4GB
+  * 变量存储： eg：int num1 = 2; int是32位，32位整数 00000000｜00000000｜00000000｜00000010， 分成4个字节存放在相邻的4个格子中
+  * 内存分区： 不同内存区域的职责不同；
+  * - 堆区（Heap-based/Dynamic memory allocation）：保存通过new操作符创建的object
+  * - 栈区（Stack-based memory allocation）： 局部变量，函数调用等  
+* Reference的原理 -> Copy address
+  * reference本质上就是一个变量，只不过这个变量和基本数据类型的变量不太一样，它里面存的是object的地址，而普通基本数据类型的变量存储的就是值
+  * 引用好比遥控器，对象好比电视机
+  * 赋值操作（引用型变量  = 对象）， 通过地址，找到object本身，然后访问object的属性和方法
+  * birthday myBirthday = new birthday(); new birthday() -> 实例化一个birthday类的对象
+  * 实例化一个birthday类的对象，并声明一个引用型变量myBirthday，并让变量myBirthday引用对象，也就是将对象的地址赋值给变量myBirthday
+  * 对象模型 
+  * eg: Student student1 = new Student(); student1.name = "Tom"; Student student2 = student1; 这里student2相当于引用了student1的对象模型
+* 基本数据类型的赋值：Copy value
+  * 当定义了一个基本数据类型变量时，就等于我们在内存当中申请了一块空间，并规定这块空间中存储的内容为指定的变量类型
+  * 比如int num； 相当于在内存中开辟了一块空间； int num2 = 10； 相当于开辟了一块空间，并且把值10存进去； num = num2； 我们把num2所在的内存空间的值拷贝一份，然后放在num那块空间中， 赋值完后，num 和 num2不再有任何联系，只是值一样； num2 = 20，num2空间里的值是20， num 空间里的值依然是10；
+* 总结：
+  * Java中的变量分为基本数据类型变量和引用型变量两种，基本数据类型变量中直接存储值，引用型变量通过地址和堆中的object产生关联。在赋值操作中，都是将变量中存储的内容进行复制，只是基本类型的变量直接复制值，引用型变量复制的是地址，本质是相同的，都是二进制数。在函数传参的时候都会发生值复制，引用型变量大小固定，用来存储内存地址
+  * 空的引用， 没有引用任何对象
+  * int number = null, 这是错误的写法，int是基本数据类型
+  * Student student = null; 这是对的
+  * 空指针异常: NullPointerException; eg: Student student = null; int studentScore = student.score; student.printScore();
+  * 如何防止？ 检查方法：看点号之前的引用变量是否可能为null
+  * 注意以下两种情况：1 引用类型的数组创建时，每个数组元素会被初始化为null； 2 没有初始化的引用类型成员变量会被自动初始化为null
+* 数组
+  * 数组变量本身是个引用，会在堆空间开辟一片空间来存储数组的内容
+* 字符串
+  * String是一个类
+  * String对象有特殊的创建方法；String str1 = "abcd"; String str2 = new String("abcd");
+  * String类型不可变（Immutable）
+  * 只能用String.equals()来比较是否相等，不能用"=="
+* 什么是数据结构？ Data Structure
+  * 数据
+  * 结构
+  * 操作
+* ArrayList及其操作：
+  * ArrayList<Integer> arrayList = new ArrayList<>();  // generic 泛型， Integer 是 int的类（Class）
+  * 增删改查CRUD
+  * arrayList.add(10);  // 增加操作， [10]
+  * arrayList.add(0, 3); index: 0, element: 3; // [3, 10]
+  * arrayList.get(1);  // 读取操作, index: 1; 返回的是10
+  * arrayList.set(1, 2); // 修改操作， index：1， element：2；[3, 2]
+  * arrayList.delete(1);  // 删除方法， index: 1, 返回的是[3]
+  * arrayList.clear(); // 把所有元素清空， 返回的是[]
+  * List<Integer> arrayList = new ArrayList();   // List是ArrayList实现的一个接口，因此可以使用List所有的方法
+### Lession 5: 链表和时间复杂度
+* 链表的定义和构建（Linked List）
+  * 由节点构成的列表
+  * 线性的数据结构
+  * class ListNode {
+  *     public int val;
+  *     public ListNode next;
+  * }
+  * ArrayList和LinkedList都是线性的数据结构，区别在于数据的组织方式不同。两种数据结构各有其应用场景，没有优劣之分
+  * ListNode node1 = new ListNode(1);
+  * node1.next = node2;
+  * 链表的头结点可以代表整个链表，因为当知道链表的头结点后，可以通过每个节点的next引用访问下一个节点，进而访问整个链表。面试题中的链表题目都只会给出链表的头节点的引用，去操作链表，所以使用Java内置的链表是没意义的。链表在操作系统的内存管理中起着重要作用，所以是非常有意义的数据结构
+* Java中自带的LinkedList方法（面试中用不到）
+  * LinkedList<Integer> linkedList = new LinkedList<>();
+  * linkedList.add(10);
+  * linkedList.add(0, 12);
+  * linkedList.get(1);
+  * linkedList.remove(0);
+  * linkedList.set(0, 13);
+* 链表的操作
+  * 遍历（traverse）
+  * 插入（insert）
+  * 查找（find）
+  * 删除（delete）
+  * 更新（update）
+* 链表的遍历（traverse）
+  * ListNode cur = node1;
+  * while (cur != null) {
+  *     System.out.print(cur.val + " ");
+  *     cur = cur.next;
+  * }
+* 链表的插入（insert）
+  * 插入位置在中间; if location > 0; ListNode pre = head; for (int i = 0; i < location - 1; i++){ pre = pre.next; }; 
+  * ListNode newNode = new ListNode(value); newNode.next = pre.next; pre.next = newNode;
+  * 插入位置在头部; if location = 0; ListNode newNode = new ListNode(value); newNode.next = head; head = newNode; (LinkedList里本身存在一个head这个全局变量属性的，所以需要把head设置成newNode）
+* 链表的删除（delete）
+  * 删除操作有返回值的；ListNode res = null;
+  * 删除位置在中间; if location > 0; ListNode pre = head; for (int i = 0; i < location - 1; i++){ pre = pre.next; }; res = pre.next; pre.next = pre.next.next;
+  * 删除位置在头部; if location == 0; res = head; head = head.next;                                                         
+  * 返回返回值res.val即可; return res.val;
+* 链表的查找（find）
+  * 有返回值的
+  * ListNode cur = head; for (int i = 0; i < location; i++){ cur = cur.next; }; return cur.val;
+* 链表的更新（update）
+  * ListNode cur = head; for (int i = 0; i < location; i++){ cur = cur.next; }; cur.val = newValue;  
+* 神奇的dummy节点
+  * 在整个链表前插入一个特殊的哨兵节点（dummy不是head头节点，而是head头节点前面的一个节点）
+  * 使得对于链表头部的操作和中间操作的逻辑相同
+  * 由于在头部前面插入了一个dummy节点，此时不再存在head这个变量了， dummy.next 表示head节点                                               
+  * ListNode dummy = new ListNode(-1)
+  * 查找操作: ListNode cur = dummy.next; for (int i = 0; i < location; i++){ cur = cur.next; }; return cur.val;                   * 更新操作: ListNode cur = dummy.next; for (int i = 0; i < location; i++){ cur = cur.next; }; cur.val = newValue;               * 插入操作:  ListNode pre = dummy; for (int i = 0; i < location; i++){ pre = pre.next; }; ListNode newNode = new ListNode(value); newNode.next = pre.next; pre.next = newNode;
+  * 删除操作: ListNode res = null; ListNode pre = dummy; for (int i = 0; i < location; i++){ pre = pre.next; }; res = pre.next; pre.next = pre.next.next; return res.val;
+* 算法的时间复杂度 (Time Complexity)
+  * 评估算法时间效率的标准
+  * "执行时间" 和输入问题规模之间的关系
+  * 不是实际时间，而是单位时间                                                                                
+  * ArrayList: add(0,val) -> O(n); add(n, val) -> O(1); add(average) -> O(n); get -> O(1); set -> O(1)
+  * LinkedList: add(0,val) -> O(1); add(n, val) -> O(n); add(average) -> O(n); get -> O(n); set -> O(n)
   
