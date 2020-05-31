@@ -12,8 +12,8 @@ public class Longest_Palindromic_Substring {
         // ^ ^ n - 1 个偶数长度的回文串中心点
         // L R 背向双指针移动，直到L != R 跳出循环
 
-        if (s == null) {
-            return null;
+        if (s == null || s.length() == 0) {
+            return "";
         }
 
         String longest = "";
