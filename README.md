@@ -393,4 +393,11 @@
   * 不是实际时间，而是单位时间                                                                                
   * ArrayList: add(0,val) -> O(n); add(n, val) -> O(1); add(average) -> O(n); get -> O(1); set -> O(1)
   * LinkedList: add(0,val) -> O(1); add(n, val) -> O(n); add(average) -> O(n); get -> O(n); set -> O(n)
+### Lession 6: 栈，队列和哈希表
+* 栈(stack)
+  * 栈是一种后进先出（last in first out, LIFO)的线性数据结构
+  * 栈的操作：push， pop， peek（getTop）【获取栈顶元素的值】， isEmpty
+  * Stack<Integer> stack = new Stack<>();(java中自带的栈）
+* 栈的实现 - LinkedList
+  * 使用链表来模拟栈的过程中，链表的头部代表栈顶，这样push，pop操作的时间复杂度都是O(1)的，如果用链表的尾部代表栈顶的话，那么复杂度均为O(n)的
   
