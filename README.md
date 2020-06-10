@@ -439,3 +439,32 @@
   * 除余法(modulo division),平方取中法(mid-square), 基础转换法等(radix transformation)
   * Java String哈希函数: for (char c : str) { hashCode = 31 * hashCode + c; }
   * 碰撞（Collision):例如 Aa 和 BB； Ab 和 BC
+* 哈希表的冲突解决方案(collision solution)
+  * 开散列: open hashing, 也称为拉链法(separate chaining)
+  * 闭散列: closed hashing, 也称为开地址方法(open addressing)
+### Lession 7: 树和递归
+* 什么是树（tree）
+  * 树是一种用来表示`层次关系`的`非线性`数据结构
+  * eg: 文件系统， 数据库的索引， 字典树， 结构化存储
+  * 由节点（node）组成
+  * 每个节点有零个或多个子节点（child node）
+  * 没有父节点的是根节点（root node）
+  * 每个非根节点只有一个父节点（parent node）
+* 二叉树（binary tree）
+  * 每个节点最多有两个子节点
+  * 两个子节点分别被称为左孩子（left child） 和右孩子（right child）
+  * 叶子节点： 没有孩子节点的节点
+  * 节点位置很难描述，操作很难定义， 不完整的数据结构
+  * 二叉树的构建： 先建立单个节点，将节点连接起来；
+  * class TreeNode {
+  *     public int val;
+  *     public TreeNode left;
+  *     public TreeNode right;
+  *     public TreeNode(int val) {
+  *         this.val = val;
+  *     }
+  * }
+  * TreeNode node1 = new TreeNode(8); TreeNode node2 = new TreeNode(3); TreeNode node3 = new TreeNode(10);
+  * node1.left = node1; node1.right = node3; return node1;
+* 二叉树的深度优先搜索
+  
