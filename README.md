@@ -403,4 +403,25 @@
 * 函数调用栈（Call Stack）
   * 操作系统(OS)用来保存函数的状态
   * 函数的调用过程中，主调函数停止执行，转而去执行被调函数，被调函数执行结束之后会返回主调函数。调用的时候要求参数的数量和类型都和定义时匹配，在函数执行过程中，遇到return语句后会立即返回
- * 在函数调用的过程中，操作系统使用函数调用栈来维护函数调用的状态。每个函数运行过程中有一段属于自己的栈帧结构，主要用来记录一些临时变量和主调函数的返回地址，这样当被调函数执行结束之后可以根据这个地址返回主调函数中，从而实现了函数调用的过程。函数调用栈的先进后出的结构与函数先调用后返回的特性恰好相符，是栈的重要应用，在调用过程中，先开始执行的函数后结束
+  * 在函数调用的过程中，操作系统使用函数调用栈来维护函数调用的状态。每个函数运行过程中有一段属于自己的栈帧结构，主要用来记录一些临时变量和主调函数的返回地址，这样当被调函数执行结束之后可以根据这个地址返回主调函数中，从而实现了函数调用的过程。函数调用栈的先进后出的结构与函数先调用后返回的特性恰好相符，是栈的重要应用，在调用过程中，先开始执行的函数后结束
+* 队列(queue)及其实现
+  * 队列是一种先进先出(first in first out, FIFO)的线性数据结构
+  * 队列的应用：Message queue（消息队列）
+  * 队列操作：enqueue(进队列), dequeue(出队列), peek(getHead), isEmpty
+  * Queue<Integer> que = new LinkedList<>();(java中自带的队列）
+  * que.offer(10); que.poll();
+* 手动完成队列的实现 - LinkedList （参考截图）
+  * 使用链表实现队列的过程中，需要同时记录链表的头结点和尾节点。这样才能保证进队列和出队列的时间复杂度都是O(1)的。消息队列是队列在操作系统中的重要应用
+* 集合(Set)
+  * 集合中存储非重复的无序数据
+  * 集合的操作：插入(insert), 查找(find), 删除(delete)
+  * Set<Integer> set = new HashSet<>(); 
+  * Set是一个接口(Interface)，HashSet和TreeSet是其两个具体的实现。Set可以非常高效的进行元素的插入和查找
+  * 在TreeSet里面的增删查改是O(log(n))的时间复杂度； 在HashSet里面的增删查改是O(1)的时间复杂度；
+  * set.add(5); set.contains(5); set.remove(5); set.isEmpty(); set.size();
+* 索引(Index)
+  * A map(C++, java), A dictionary(python), A key-value pairs
+  * key值唯一的key-value pairs, 无序的
+  * Map<String, String> map = new HashMap<>(); 同样，HashMap的增删改查效率比TreeMap高
+  * map.put("jack", "CMU"); map.get("jack"); map.size(); map.isEmpty();
+  * map中如果key值一样，则会覆盖原来key所对应的value值
