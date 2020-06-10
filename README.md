@@ -419,9 +419,23 @@
   * Set是一个接口(Interface)，HashSet和TreeSet是其两个具体的实现。Set可以非常高效的进行元素的插入和查找
   * 在TreeSet里面的增删查改是O(log(n))的时间复杂度； 在HashSet里面的增删查改是O(1)的时间复杂度；
   * set.add(5); set.contains(5); set.remove(5); set.isEmpty(); set.size();
+  * set的遍历：for(int num : set) {}
 * 索引(Index)
   * A map(C++, java), A dictionary(python), A key-value pairs
   * key值唯一的key-value pairs, 无序的
   * Map<String, String> map = new HashMap<>(); 同样，HashMap的增删改查效率比TreeMap高
   * map.put("jack", "CMU"); map.get("jack"); map.size(); map.isEmpty();
   * map中如果key值一样，则会覆盖原来key所对应的value值
+  * map的遍历: for(String key : map.keySet()) {}
+* 哈希表(Hash Table)的原理
+  * 实现数据的快速查找
+  * 哈希表设计要素：哈希函数(hash function), 冲突解决方案(collision solution), 重哈希(rehashing)
+* 哈希函数(hash function)
+  * 确定性，不可逆性
+  * 输入：任何二进制数据
+  * 输出：整数
+  * 好的哈希函数: - 在给定的输入范围内，尽可能少的发生碰撞(collision)
+  * 计算复杂度不能太高
+  * 除余法(modulo division),平方取中法(mid-square), 基础转换法等(radix transformation)
+  * Java String哈希函数: for (char c : str) { hashCode = 31 * hashCode + c; }
+  * 碰撞（Collision):例如 Aa 和 BB； Ab 和 BC
