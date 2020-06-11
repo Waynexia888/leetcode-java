@@ -498,6 +498,7 @@
 * 空间复杂度（Space complexity）
   * 程序占用的空间和输入问题规模之间的关系
   * 堆（heap）空间 + 栈（stack）空间
-* 
+* 面试真题: Binary tree leaf sum -> https://www.lintcode.com/problem/binary-tree-leaf-sum/description
+* 面试真题: Maximum depth of binary tree -> https://www.lintcode.com/problem/maximum-depth-of-binary-tree/description
 
   
