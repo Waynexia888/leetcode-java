@@ -393,4 +393,125 @@
   * 不是实际时间，而是单位时间                                                                                
   * ArrayList: add(0,val) -> O(n); add(n, val) -> O(1); add(average) -> O(n); get -> O(1); set -> O(1)
   * LinkedList: add(0,val) -> O(1); add(n, val) -> O(n); add(average) -> O(n); get -> O(n); set -> O(n)
+### Lession 6: 栈，队列和哈希表
+* 栈(stack)
+  * 栈是一种后进先出（last in first out, LIFO)的线性数据结构
+  * 栈的操作：push， pop， peek（getTop）【获取栈顶元素的值】， isEmpty
+  * Stack<Integer> stack = new Stack<>();(java中自带的栈）
+* 栈的实现 - LinkedList
+  * 使用链表来模拟栈的过程中，链表的头部代表栈顶，这样push，pop操作的时间复杂度都是O(1)的，如果用链表的尾部代表栈顶的话，那么复杂度均为O(n)的
+* 函数调用栈（Call Stack）
+  * 操作系统(OS)用来保存函数的状态
+  * 函数的调用过程中，主调函数停止执行，转而去执行被调函数，被调函数执行结束之后会返回主调函数。调用的时候要求参数的数量和类型都和定义时匹配，在函数执行过程中，遇到return语句后会立即返回
+  * 在函数调用的过程中，操作系统使用函数调用栈来维护函数调用的状态。每个函数运行过程中有一段属于自己的栈帧结构，主要用来记录一些临时变量和主调函数的返回地址，这样当被调函数执行结束之后可以根据这个地址返回主调函数中，从而实现了函数调用的过程。函数调用栈的先进后出的结构与函数先调用后返回的特性恰好相符，是栈的重要应用，在调用过程中，先开始执行的函数后结束
+* 队列(queue)及其实现
+  * 队列是一种先进先出(first in first out, FIFO)的线性数据结构
+  * 队列的应用：Message queue（消息队列）
+  * 队列操作：enqueue(进队列), dequeue(出队列), peek(getHead), isEmpty
+  * Queue<Integer> que = new LinkedList<>();(java中自带的队列）
+  * que.offer(10); que.poll();
+* 手动完成队列的实现 - LinkedList （参考截图）
+  * 使用链表实现队列的过程中，需要同时记录链表的头结点和尾节点。这样才能保证进队列和出队列的时间复杂度都是O(1)的。消息队列是队列在操作系统中的重要应用
+* 集合(Set)
+  * 集合中存储非重复的无序数据
+  * 集合的操作：插入(insert), 查找(find), 删除(delete)
+  * Set<Integer> set = new HashSet<>(); 
+  * Set是一个接口(Interface)，HashSet和TreeSet是其两个具体的实现。Set可以非常高效的进行元素的插入和查找
+  * 在TreeSet里面的增删查改是O(log(n))的时间复杂度； 在HashSet里面的增删查改是O(1)的时间复杂度；
+  * set.add(5); set.contains(5); set.remove(5); set.isEmpty(); set.size();
+  * set的遍历：for(int num : set) {}
+* 索引(Index)
+  * A map(C++, java), A dictionary(python), A key-value pairs
+  * key值唯一的key-value pairs, 无序的
+  * Map<String, String> map = new HashMap<>(); 同样，HashMap的增删改查效率比TreeMap高
+  * map.put("jack", "CMU"); map.get("jack"); map.size(); map.isEmpty();
+  * map中如果key值一样，则会覆盖原来key所对应的value值
+  * map的遍历: for(String key : map.keySet()) {}
+* 哈希表(Hash Table)的原理
+  * 实现数据的快速查找
+  * 哈希表设计要素：哈希函数(hash function), 冲突解决方案(collision solution), 重哈希(rehashing)
+* 哈希函数(hash function)
+  * 确定性，不可逆性
+  * 输入：任何二进制数据
+  * 输出：整数
+  * 好的哈希函数: - 在给定的输入范围内，尽可能少的发生碰撞(collision)
+  * 计算复杂度不能太高
+  * 除余法(modulo division),平方取中法(mid-square), 基础转换法等(radix transformation)
+  * Java String哈希函数: for (char c : str) { hashCode = 31 * hashCode + c; }
+  * 碰撞（Collision):例如 Aa 和 BB； Ab 和 BC
+* 哈希表的冲突解决方案(collision solution)
+  * 开散列: open hashing, 也称为拉链法(separate chaining)
+  * 闭散列: closed hashing, 也称为开地址方法(open addressing)
+* 开散列（open hashing）
+  * 开辟一个数组
+  * 数组的每一个元素是一个链表的头节点引用
+  * 通过Hash函数，计算key对应的index，将index相同的key-value插入到同一个链表中
+* 闭散列（close hashing）
+  * 开辟一个数组，一个位置只放一个key-value
+  * 通过Hash函数，计算key对应的index，将key-value放在相应的位置
+  * 如果这个位置已经有了元素，则查找其他合适的空位置放入
+  * 冲突时，查找其他空位置的策略， 尽量探查到所有位置，减少聚集现象的出现
+* 重哈希（rehashing）
+  * 负载因子（load factor）- 哈希表中的元素个数初一哈希表的容量
+  * 哈希表检索的时间与负载因子有关：当负载因子小于0.5时，大部分检索长度小于2； 当负载因子大于0.5，性能急剧下降； 空间换时间：O(1)
+  * 重哈希：调整哈希表的大小年，并将元素重新摆放； 当哈希表过于稀疏 -> 节省空间； 当哈希表过于稠密 -> 加速查找
+### Lession 7: 树和递归
+* 什么是树（tree）
+  * 树是一种用来表示`层次关系`的`非线性`数据结构
+  * eg: 文件系统， 数据库的索引， 字典树， 结构化存储
+  * 由节点（node）组成
+  * 每个节点有零个或多个子节点（child node）
+  * 没有父节点的是根节点（root node）
+  * 每个非根节点只有一个父节点（parent node）
+* 二叉树（binary tree）
+  * 每个节点最多有两个子节点
+  * 两个子节点分别被称为左孩子（left child） 和右孩子（right child）
+  * 叶子节点： 没有孩子节点的节点
+  * 节点位置很难描述，操作很难定义， 不完整的数据结构
+  * 二叉树的构建： 先建立单个节点，将节点连接起来；
+  * class TreeNode {
+  *     public int val;
+  *     public TreeNode left;
+  *     public TreeNode right;
+  *     public TreeNode(int val) {
+  *         this.val = val;
+  *     }
+  * }
+  * TreeNode node1 = new TreeNode(8); TreeNode node2 = new TreeNode(3); TreeNode node3 = new TreeNode(10);
+  * node1.left = node1; node1.right = node3; return node1;
+* 二叉树的深度优先搜索
+  * 子树（sub-tree): 树中的每个节点代表以它为跟的一棵树；左孩子所代表的树称为左子树(left sub-tree);右孩子所代表的树称为右子树(right sub-tree);
+  * 时间复杂度: O(n)
+  * 空间复杂度: 程序最多占用的空间与树的高度成线性关系， 算法的空间复杂度O(h), h介于logn和n之间， 即O(log(n)) ~ O(n)
+  * 二叉树的遍历(traverse)
+  * public static void traverseTree(TreeNode root) {
+  *     if (root == null) {
+  *         return;
+  *     }
+  *     System.out.println(root.val);
+  *     traverseTree(root.left);
+  *     traverseTree(root.right);
+  * }
+  * 先序遍历(preorder): root-left-right
+  * 中序遍历(inorder): left-root-right
+  * 后序遍历(postorder): left-right-root
+  * Binary tree preorder traversal: https://www.lintcode.com/problem/binary-tree-preorder-traversal/description
+  * Binary tree inorder traversal: https://www.lintcode.com/problem/binary-tree-inorder-traversal/description
+  * Binary tree postorder traversal: https://www.lintcode.com/problem/binary-tree-postorder-traversal/description
+* 递归(Recursive)算法及其复杂度
+  * 数据结构的递归，树就是一种递归的数据结构
+  * 算法（程序）的递归， 函数自己调用自己
+  * 定义：首先这个问题或者数据结构需要是递归定义的
+  * 出口： 什么时候递归终止
+  * 拆解： 递归不终止的时候，如何分解问题
+  * 经典例题Fibonacci： https://www.lintcode.com/problem/fibonacci/description
+* 时间复杂度(Time complexity)
+  * 程序执行的时间和输入问题规模之间的关系
+  * 函数调用的次数 x 每次函数调用的时间消耗
+* 空间复杂度（Space complexity）
+  * 程序占用的空间和输入问题规模之间的关系
+  * 堆（heap）空间 + 栈（stack）空间
+* 面试真题: Binary tree leaf sum -> https://www.lintcode.com/problem/binary-tree-leaf-sum/description
+* 面试真题: Maximum depth of binary tree -> https://www.lintcode.com/problem/maximum-depth-of-binary-tree/description
+
   
