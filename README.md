@@ -467,4 +467,37 @@
   * TreeNode node1 = new TreeNode(8); TreeNode node2 = new TreeNode(3); TreeNode node3 = new TreeNode(10);
   * node1.left = node1; node1.right = node3; return node1;
 * 二叉树的深度优先搜索
+  * 子树（sub-tree): 树中的每个节点代表以它为跟的一棵树；左孩子所代表的树称为左子树(left sub-tree);右孩子所代表的树称为右子树(right sub-tree);
+  * 时间复杂度: O(n)
+  * 空间复杂度: 程序最多占用的空间与树的高度成线性关系， 算法的空间复杂度O(h), h介于logn和n之间， 即O(log(n)) ~ O(n)
+  * 二叉树的遍历(traverse)
+  * public static void traverseTree(TreeNode root) {
+  *     if (root == null) {
+  *         return;
+  *     }
+  *     System.out.println(root.val);
+  *     traverseTree(root.left);
+  *     traverseTree(root.right);
+  * }
+  * 先序遍历(preorder): root-left-right
+  * 中序遍历(inorder): left-root-right
+  * 后序遍历(postorder): left-right-root
+  * Binary tree preorder traversal: https://www.lintcode.com/problem/binary-tree-preorder-traversal/description
+  * Binary tree inorder traversal: https://www.lintcode.com/problem/binary-tree-inorder-traversal/description
+  * Binary tree postorder traversal: https://www.lintcode.com/problem/binary-tree-postorder-traversal/description
+* 递归(Recursive)算法及其复杂度
+  * 数据结构的递归，树就是一种递归的数据结构
+  * 算法（程序）的递归， 函数自己调用自己
+  * 定义：首先这个问题或者数据结构需要是递归定义的
+  * 出口： 什么时候递归终止
+  * 拆解： 递归不终止的时候，如何分解问题
+  * 经典例题Fibonacci： https://www.lintcode.com/problem/fibonacci/description
+* 时间复杂度(Time complexity)
+  * 程序执行的时间和输入问题规模之间的关系
+  * 函数调用的次数 x 每次函数调用的时间消耗
+* 空间复杂度（Space complexity）
+  * 程序占用的空间和输入问题规模之间的关系
+  * 堆（heap）空间 + 栈（stack）空间
+* 
+
   
