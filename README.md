@@ -513,5 +513,20 @@
   * 堆（heap）空间 + 栈（stack）空间
 * 面试真题: Binary tree leaf sum -> https://www.lintcode.com/problem/binary-tree-leaf-sum/description
 * 面试真题: Maximum depth of binary tree -> https://www.lintcode.com/problem/maximum-depth-of-binary-tree/description
-
-  
+### Lession 8: 宽度优先遍历和分治法
+* 二叉树的宽度优先遍历
+  * 访问每一个节点，不重不漏
+  * 按层次的顺序遍历二叉树
+  * 使用队列（Queue）作为主要的数据结构
+  * Queue<TreeNode> queue = new LinkedList<>();
+  * 时间复杂度O(n)
+  * 空间复杂度: 由节点最多的层的节点数决定，O(n)
+* 二叉树的分层遍历
+  * 多一个循环
+  * 层数记录了根节点到当前节点的路径长度（level - 1）
+  * 时间复杂度O(n)
+  * 空间复杂度: 由节点最多的层的节点数决定，O(n)
+* 面试真题: Binary Tree Level Order Traversal
+  * https://www.lintcode.com/problem/binary-tree-level-order-traversal/description
+* 面试真题: Convert Binary Tree to Linked Lists by Depth
+  * https://www.lintcode.com/problem/convert-binary-tree-to-linked-lists-by-depth/description
