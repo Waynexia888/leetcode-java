@@ -514,7 +514,7 @@
 * 面试真题: Binary tree leaf sum -> https://www.lintcode.com/problem/binary-tree-leaf-sum/description
 * 面试真题: Maximum depth of binary tree -> https://www.lintcode.com/problem/maximum-depth-of-binary-tree/description
 ### Lession 8: 宽度优先遍历和分治法
-* 二叉树的宽度优先遍历
+* 二叉树的宽度优先遍历(普通遍历）
   * 访问每一个节点，不重不漏
   * 按层次的顺序遍历二叉树
   * 使用队列（Queue）作为主要的数据结构
@@ -530,3 +530,23 @@
   * https://www.lintcode.com/problem/binary-tree-level-order-traversal/description
 * 面试真题: Convert Binary Tree to Linked Lists by Depth
   * https://www.lintcode.com/problem/convert-binary-tree-to-linked-lists-by-depth/description
+* 分治算法(divide and conquer)
+  * 将一个大问题分解成多个独立的小问题: 分
+  * 分别解决每个小问题（小问题和大问题是同一类问题，可以用递归）
+  * 将小问题的解合并，从而得到大问题的解: 合
+* 面试真题: Identical Binary Tree
+  * https://www.lintcode.com/problem/same-tree/description
+  * 判断两颗树根的值是否相同
+  * 判断左子树是否一致
+  * 判断右子树是否一致
+* 面试真题: Balanced Binary Tree
+  * https://www.lintcode.com/problem/balanced-binary-tree/description
+  * 判断左子树是否平衡
+  * 判断右子树是否平衡
+  * 左右子树高度差不超过1
+* 面试真题: Validate Binary Search Tree
+  * https://www.lintcode.com/problem/validate-binary-search-tree/description
+  * 判断左子树是否是BST
+  * 判断右子树是否是BST
+  * 左子树的最大值 < 跟节点的值 < 右子树的最小值
+  * 二分搜索树（BST）是一种特殊的二叉树，对于树中的任何一个节点，其左子树中所有节点的值都小，右子树中所有节点的值都大。对BST进行中序遍历可以得到一个非降的序列，相比于普通的二叉树，BST内部结构更加严谨有序，可以定义插入，查找，删除等操作
