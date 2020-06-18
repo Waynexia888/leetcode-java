@@ -513,5 +513,95 @@
   * 堆（heap）空间 + 栈（stack）空间
 * 面试真题: Binary tree leaf sum -> https://www.lintcode.com/problem/binary-tree-leaf-sum/description
 * 面试真题: Maximum depth of binary tree -> https://www.lintcode.com/problem/maximum-depth-of-binary-tree/description
-
-  
+### Lession 8: 宽度优先遍历和分治法
+* 二叉树的宽度优先遍历(普通遍历）
+  * 访问每一个节点，不重不漏
+  * 按层次的顺序遍历二叉树
+  * 使用队列（Queue）作为主要的数据结构
+  * Queue<TreeNode> queue = new LinkedList<>();
+  * 时间复杂度O(n)
+  * 空间复杂度: 由节点最多的层的节点数决定，O(n)
+* 二叉树的分层遍历
+  * 多一个循环
+  * 层数记录了根节点到当前节点的路径长度（level - 1）
+  * 时间复杂度O(n)
+  * 空间复杂度: 由节点最多的层的节点数决定，O(n)
+* 面试真题: Binary Tree Level Order Traversal
+  * https://www.lintcode.com/problem/binary-tree-level-order-traversal/description
+* 面试真题: Convert Binary Tree to Linked Lists by Depth
+  * https://www.lintcode.com/problem/convert-binary-tree-to-linked-lists-by-depth/description
+* 分治算法(divide and conquer)
+  * 将一个大问题分解成多个独立的小问题: 分
+  * 分别解决每个小问题（小问题和大问题是同一类问题，可以用递归）
+  * 将小问题的解合并，从而得到大问题的解: 合
+* 面试真题: Identical Binary Tree
+  * https://www.lintcode.com/problem/same-tree/description
+  * 判断两颗树根的值是否相同
+  * 判断左子树是否一致
+  * 判断右子树是否一致
+* 面试真题: Balanced Binary Tree
+  * https://www.lintcode.com/problem/balanced-binary-tree/description
+  * 判断左子树是否平衡
+  * 判断右子树是否平衡
+  * 左右子树高度差不超过1
+* 面试真题: Validate Binary Search Tree
+  * https://www.lintcode.com/problem/validate-binary-search-tree/description
+  * 判断左子树是否是BST
+  * 判断右子树是否是BST
+  * 左子树的最大值 < 跟节点的值 < 右子树的最小值
+  * 二分搜索树（BST）是一种特殊的二叉树，对于树中的任何一个节点，其左子树中所有节点的值都小，右子树中所有节点的值都大。对BST进行中序遍历可以得到一个非降的序列，相比于普通的二叉树，BST内部结构更加严谨有序，可以定义插入，查找，删除等操作
+### Lession 9: 高级排序算法
+* 普通排序算法
+  * 选择排序(Selection sort)
+  * http://www.algolist.net/Algorithms/Sorting/Selection_sort
+  * 插入排序(Insertion sort)
+  * http://www.algolist.net/Algorithms/Sorting/Insertion_sort
+  * 冒泡排序(Bubble sort)
+  * http://www.algolist.net/Algorithms/Sorting/Bubble_sort
+  * 时间复杂度都是: O(n^2)
+  * 空间复杂度: O(1)
+  * 演示动画： https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html
+* 归并排序(Merge sort) - 分治
+  * 把数组均分成左右两半
+  * 将左右两半分别排序（递归）
+  * 将排好序的两半数组合并（merge）
+  * 参考代码： https://www.jiuzhang.com/solutions/merge-sort
+  * 归并排序是一种高级的排序算法，其使用的方法是分治法，先将大数组分成左右两半，对左右两半分别进行递归归并排序，然后将排好序的小数组进行归并，得到最终有序的大数组。归并过程是整个算法的核心， 先局部有序再整体有序。
+  * 注意事项： int mid = left + (right - left) / 2;
+  * 时间复杂度：O(nlogn)
+  * 空间复杂度: O(n) , 栈空间:O(logn), 堆空间:O(nlogn) -> O(n)
+  * 如何merge？ 练习1: merge two sorted arrays
+  * https://www.lintcode.com/problem/merge-two-sorted-arrays/description
+* 快速排序（quick sort）
+  * 20世纪依赖十大经典算法
+  * https://www.quora.com/What-are-the-top-10-algorithms-of-the-20th-century
+  * 把数组分成两边，使得：数组的左边小于等于数组的右边（左右两边长度不一定相等）
+  * 对左右两部分数组分别排序（递归）
+  * 先整体有序再局部有序
+  * Pivot的选取是快速排序中很重要的一部分，其策略的好坏会影响快速排序的时间复杂度。在选取Pivot的过程中，比较好的方法是随机选取。但是快速排序的最坏时间复杂度是O(n^2)，无论pivot的选取规则怎样，肯定可以构建出一组输入数据使得排序的时间复杂度为O(n^2)
+  * 时间复杂度: O(nlogn) -> 平均情况； O(n^2) -> 最坏情况;
+  * 空间复杂度: O(logn) -> 平均情况; O(n) -> 最坏情况
+  * 代码参考: https://www.jiuzhang.com/solutions/quick-sort
+* 快速排序步骤：
+  * 选取基准数（pivot）
+  * 将数组分割为两部分，长度不一定相等（partition）
+  * 递归处理子问题
+* partition：
+  * 两个指针，分别指向当前数组的头和尾
+  * 移动左边的指针，直到左指针指向的数 >= pivot
+  * 移动右边的指针，直到右指针指向的数 <= pivot
+  * 交换两个指针指向的数
+  * 回到第2步，直到两个指针相遇
+  * 时间复杂度: O(n), 空间复杂度: O(1)
+  * 两个子问题的边界：[left, j], [i, right]                            
+* 在Java中使用排序:
+  * Arrays.sort()；排数组
+  * Collections.sort(); 排list，不管ArrayList，还是LinkedList，都可以排  
+  * 自定义比较函数：
+  * Comparator<Integer> comparator = new Comparator<Integer>() {
+  *     @Override
+  *     public int compare(Integer o1, Integer o2) {
+  *         return o1 - o2;
+  *     }
+  *  }
+ 
