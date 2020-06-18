@@ -550,3 +550,42 @@
   * 判断右子树是否是BST
   * 左子树的最大值 < 跟节点的值 < 右子树的最小值
   * 二分搜索树（BST）是一种特殊的二叉树，对于树中的任何一个节点，其左子树中所有节点的值都小，右子树中所有节点的值都大。对BST进行中序遍历可以得到一个非降的序列，相比于普通的二叉树，BST内部结构更加严谨有序，可以定义插入，查找，删除等操作
+### Lession 9: 高级排序算法
+* 普通排序算法
+  * 选择排序(Selection sort)
+  * http://www.algolist.net/Algorithms/Sorting/Selection_sort
+  * 插入排序(Insertion sort)
+  * http://www.algolist.net/Algorithms/Sorting/Insertion_sort
+  * 冒泡排序(Bubble sort)
+  * http://www.algolist.net/Algorithms/Sorting/Bubble_sort
+  * 时间复杂度都是: O(n^2)
+  * 空间复杂度: O(1)
+  * 演示动画： https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html
+* 归并排序(Merge sort) - 分治
+  * 把数组均分成左右两半
+  * 将左右两半分别排序（递归）
+  * 将排好序的两半数组合并（merge）
+  * 归并排序是一种高级的排序算法，其使用的方法是分治法，先将大数组分成左右两半，对左右两半分别进行递归归并排序，然后将排好序的小数组进行归并，得到最终有序的大数组。归并过程是整个算法的核心， 先局部有序再整体有序。
+  * 注意事项： int mid = left + (right - left) / 2;
+  * 时间复杂度：O(nlogn)
+  * 空间复杂度: O(n) , 栈空间:O(logn), 堆空间:O(nlogn) -> O(n)
+  * 如何merge？ 练习1: merge two sorted arrays
+  * https://www.lintcode.com/problem/merge-two-sorted-arrays/description
+* 快速排序（quick sort）
+  * 20世纪依赖十大经典算法
+  * https://www.quora.com/What-are-the-top-10-algorithms-of-the-20th-century
+  * 把数组分成两边，使得：数组的左边小于等于数组的右边（左右两边长度不一定相等）
+  * 对左右两部分数组分别排序（递归）
+  * 先整体有序再局部有序
+* 快速排序步骤：
+  * 选取基准数（pivot）
+  * 将数组分割为两部分，长度不一定相等（partition）
+  * 递归处理子问题
+* partition：
+  * 两个指针，分别指向当前数组的头和尾
+  * 移动左边的指针，直到左指针指向的数 >= pivot
+  * 移动右边的指针，直到右指针指向的数 <= pivot
+  * 交换两个指针指向的数
+  * 回到第2步，直到两个指针相遇
+  
+ 
