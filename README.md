@@ -565,6 +565,7 @@
   * 把数组均分成左右两半
   * 将左右两半分别排序（递归）
   * 将排好序的两半数组合并（merge）
+  * 参考代码： https://www.jiuzhang.com/solutions/merge-sort
   * 归并排序是一种高级的排序算法，其使用的方法是分治法，先将大数组分成左右两半，对左右两半分别进行递归归并排序，然后将排好序的小数组进行归并，得到最终有序的大数组。归并过程是整个算法的核心， 先局部有序再整体有序。
   * 注意事项： int mid = left + (right - left) / 2;
   * 时间复杂度：O(nlogn)
@@ -577,6 +578,10 @@
   * 把数组分成两边，使得：数组的左边小于等于数组的右边（左右两边长度不一定相等）
   * 对左右两部分数组分别排序（递归）
   * 先整体有序再局部有序
+  * Pivot的选取是快速排序中很重要的一部分，其策略的好坏会影响快速排序的时间复杂度。在选取Pivot的过程中，比较好的方法是随机选取。但是快速排序的最坏时间复杂度是O(n^2)，无论pivot的选取规则怎样，肯定可以构建出一组输入数据使得排序的时间复杂度为O(n^2)
+  * 时间复杂度: O(nlogn) -> 平均情况； O(n^2) -> 最坏情况;
+  * 空间复杂度: O(logn) -> 平均情况; O(n) -> 最坏情况
+  * 代码参考: https://www.jiuzhang.com/solutions/quick-sort
 * 快速排序步骤：
   * 选取基准数（pivot）
   * 将数组分割为两部分，长度不一定相等（partition）
@@ -587,5 +592,16 @@
   * 移动右边的指针，直到右指针指向的数 <= pivot
   * 交换两个指针指向的数
   * 回到第2步，直到两个指针相遇
-  
+  * 时间复杂度: O(n), 空间复杂度: O(1)
+  * 两个子问题的边界：[left, j], [i, right]                            
+* 在Java中使用排序:
+  * Arrays.sort()；排数组
+  * Collections.sort(); 排list，不管ArrayList，还是LinkedList，都可以排  
+  * 自定义比较函数：
+  * Comparator<Integer> comparator = new Comparator<Integer>() {
+  *     @Override
+  *     public int compare(Integer o1, Integer o2) {
+  *         return o1 - o2;
+  *     }
+  *  }
  
