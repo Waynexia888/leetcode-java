@@ -11,7 +11,7 @@ public class Solution {
      * @return: A tree node
      */
     public TreeNode sortedArrayToBST(int[] A) {
-        // write your code here
+        // // 时间复杂度O(n), 空间复杂度O(n)
         if (A == null) {
             return null;
         }
