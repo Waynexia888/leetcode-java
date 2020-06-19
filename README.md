@@ -424,7 +424,7 @@
   * A map(C++, java), A dictionary(python), A key-value pairs
   * key值唯一的key-value pairs, 无序的
   * Map<String, String> map = new HashMap<>(); 同样，HashMap的增删改查效率比TreeMap高
-  * map.put("jack", "CMU"); map.get("jack"); map.size(); map.isEmpty();
+  * map.put("jack", "CMU"); map.get("jack"); map.size(); map.isEmpty(); map.containsKey();
   * map中如果key值一样，则会覆盖原来key所对应的value值
   * map的遍历: for(String key : map.keySet()) {}
 * 哈希表(Hash Table)的原理
