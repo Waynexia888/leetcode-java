@@ -7,6 +7,14 @@ public class Solution {
     public List<List<Integer>> permute(int[] nums) {
         // write your code here
         List<List<Integer>> results = new ArrayList<>();
+        if (nums == null) {
+            return results;
+        }
+
+        if (nums.length == 0) {
+            results.add(new ArrayList<Integer>());
+            return results;
+        }
         boolean[] isUsed = new boolean[nums.length];
         List<Integer> temp = new ArrayList<>();
         dfs(nums, isUsed, temp, results);
