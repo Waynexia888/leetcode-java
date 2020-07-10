@@ -39,3 +39,45 @@ public class Solution {
 
 ////////////////////////////////////////////////////////////////
 //非递归实现后序遍历
+
+/**
+ * Definition of TreeNode:
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left, right;
+ *     public TreeNode(int val) {
+ *         this.val = val;
+ *         this.left = this.right = null;
+ *     }
+ * }
+ */
+
+public class Solution {
+    /**
+     * @param root: A Tree
+     * @return: Postorder in ArrayList which contains node values.
+     */
+    public List<Integer> postorderTraversal(TreeNode root) {
+        // non-recursion 实现后序遍历， 左右根
+        LinkedList<Integer> results = new LinkedList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        if (root == null) {
+            return results;
+        }
+        
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.pop();
+            // 相当于每次把node的值放入linkedlist的第一个位置
+            results.addFirst(node.val);
+            if (node.left != null) {
+                stack.push(node.left);
+            }
+            
+            if (node.right != null) {
+                stack.push(node.right);
+            }
+        }
+        return results;
+    }
+}
