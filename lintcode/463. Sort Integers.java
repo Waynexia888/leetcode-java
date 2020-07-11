@@ -70,14 +70,17 @@ public class Solution {
      */
     public void sortIntegers(int[] A) {
         // 实现快速排序Quick Sort
+        // 先选取一个标杆pivot, 然后把小于pivot的放在左边， 把大于pivot的放在右边，这是先整体有序
+        // 最后用递归来实现局部有序
         if (A == null || A.length == 0) {
             return;
         }
 
-        quickSort(A, 0, A.length - 1);
+        quickSort(A, 0, A.length - 1); // 在0到length-1的区间内对数组A进行快速排序
     }
 
     private void quickSort(int[] A, int start, int end) {
+        // 递归的出口
         if (start >= end) {
             return;
         }
@@ -88,7 +91,7 @@ public class Solution {
         // 注意点1: pivot, get value not index, pivot设置好后不能改变
         int pivot = A[(start + end) / 2];
 
-        // 注意点2: left <= right, not left < right
+        // 注意点2: partition 过程, left <= right, not left < right
         while (left <= right) {
 
             // 找到不属于pivot左半部分的元素
@@ -110,8 +113,8 @@ public class Solution {
                 right--;
             }
         }
-        // 当left 在 right右边的时候，即left > right, 上述while loop失效
-        // 调用左半部分的区间，以及右半部分的区间
+        //while循环结束后， 即right在left左边, 因此对[start, right]左半部分，
+        //[left, end]右半部分进行快速排序
         quickSort(A, start, right);
         quickSort(A, left, end);
     }
