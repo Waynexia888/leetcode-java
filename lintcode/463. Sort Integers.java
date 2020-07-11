@@ -4,7 +4,11 @@ public class Sort_Integers {
      * @return: nothing
      */
     public void sortIntegers(int[] A) {
-        // 实现一个归并排序
+        // 实现一个归并排序 Merge Sort, 先局部有序，后整体有序
+        // 该算法采用经典的分治（divide-and-conquer）策略（分治法将问题分(divid)成一些小的问题然后递归求解，
+        // 而治(conquer)的阶段则将分的阶段得到的各答案"修补"在一起，即分而治之
+        // 时间复杂度O(nlogn), 空间复杂度O(n)，相对于快速排序而言，是一个稳定的排序
+        // 因为耗费O(n)的额外空间，实际运行的时间会比快速排序慢
         if (A == null || A.length == 0) {
             return;
         }
@@ -13,24 +17,26 @@ public class Sort_Integers {
         mergeSort(A, 0, A.length - 1, temp);
     }
 
-    private void mergeSort(int[] A, int left, int right, int[] temp) {
-        if (left >= right) {
+    private void mergeSort(int[] A, int start, int end, int[] temp) {
+        // // 递归的出口
+        if (start >= end) {
             return;
         }
         // 下面4行代码是left< right的case：
-        int mid = (left + right) / 2;
-        mergeSort(A, left, mid, temp); // 左边归并排序，使得左子序列有序
-        mergeSort(A, mid + 1, right, temp); // 右边归并排序，使得右子序列有序
-        merge(A, left, right, temp); // 将两个有序子数组合并操作
+        int mid = (start + end) / 2;
+        mergeSort(A, start, mid, temp); // 左边归并排序，使得左子序列有序
+        mergeSort(A, mid + 1, end, temp); // 右边归并排序，使得右子序列有序
+        merge(A, start, end, temp); // 将两个有序子数组合并操作
 
     }
-
-    private void merge(int[] A, int left, int right, int[] temp) {
-        int mid = (left + right) / 2;
-        int leftIndex = left; // 左序列指针
+    
+    // merge的步骤, 将上述两个有序的左右两个数组进行合并
+    private void merge(int[] A, int start, int end, int[] temp) {
+        int mid = (start + end) / 2;
+        int leftIndex = start; // 左序列指针
         int rightIndex = mid + 1; // 右序列指针
         int tempIndex = leftIndex; // 临时数组指针
-        while (leftIndex <= mid && rightIndex <= right) {
+        while (leftIndex <= mid && rightIndex <= end) {
             if (A[leftIndex] < A[rightIndex]) {
                 temp[tempIndex++] = A[leftIndex++];
             } else {
@@ -44,12 +50,12 @@ public class Sort_Integers {
         }
 
         // 将右序列剩余元素填充进temp中
-        while (rightIndex <= right) {
+        while (rightIndex <= end) {
             temp[tempIndex++] = A[rightIndex++];
         }
 
         // //将temp中的元素全部拷贝到原数组中
-        for (int i = left; i <= right; i++) {
+        for (int i = start; i <= end; i++) {
             A[i] = temp[i];
         }
 
@@ -72,6 +78,7 @@ public class Solution {
         // 实现快速排序Quick Sort
         // 先选取一个标杆pivot, 然后把小于pivot的放在左边， 把大于pivot的放在右边，这是先整体有序
         // 最后用递归来实现局部有序
+        // 时间复杂度O(nlogn), 空间复杂度O(1); 快速排序不稳定
         if (A == null || A.length == 0) {
             return;
         }
