@@ -8,6 +8,12 @@
  *     }
  * }
  */
+class IntervalComparator implements Comparator<Interval> {
+    @Override
+    public int compare(Interval a, Interval b) {
+        return a.start - b.start;
+    }
+}
 
 public class Solution {
     /**
@@ -34,7 +40,7 @@ public class Solution {
         }
         
         // 排序 
-        intervals.sort(Comparator.comparing(i -> i.start));
+        Collections.sort(intervals, new IntervalComparator());
         // leetcode: Arrays.sort(intervals, (int[] a, int[] b) -> a[0] - b[0])
         // System.out.println(intervals);
         
