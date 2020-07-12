@@ -599,10 +599,18 @@
   * Arrays.sort()；排数组
   * Collections.sort(); 排list，不管ArrayList，还是LinkedList，都可以排  
   * 自定义比较函数：
-  * Comparator<Integer> comparator = new Comparator<Integer>() {
+  * Comparator'<Integer>' comparator = new Comparator'<Integer>'() {
   *     @Override
   *     public int compare(Integer o1, Integer o2) {
   *         return o1 - o2;   // o1.compareTo(o2);  string 比较
   *     }
   *  }
+  * 或者：private class XXComparator implements Comparator'<String>' {
+  *          @Override
+  *          public int compare(String a, String b) {
+  *              String s1 = a + b;
+  *              String s2 = b + a;
+  *              return s2.compareTo(s1);   // 从大到小排
+  *          }
+  *      }
  
