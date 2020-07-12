@@ -222,6 +222,7 @@
   * string.endsWith("world")   // true
   * string.indexOf('l')   // 2， 返回最早出现'l'这个字符的下标， 如果没找到，就返回-1
   * string.indexOf("llo")  // 2， 返回最早出现"llo"这个字符串的下标， 如果没找到，就返回-1
+  * string.valueOf(xx); // 返回xx类型参数的字符串表示形式； eg：valueOf(int i): 返回 int 参数的字符串表示形式； valueOf(char c): 返回 char 参数的字符串表示形式。valueOf(boolean b): 返回 boolean 参数的字符串表示形式。valueOf(Object obj): 返回 Object 参数的字符串表示形式。
 * 面试真题： Valid Palindrome 
   * 先考虑没有特殊字符和大写的情况
   * 将大写字符转成小写字符
@@ -598,10 +599,19 @@
   * Arrays.sort()；排数组
   * Collections.sort(); 排list，不管ArrayList，还是LinkedList，都可以排  
   * 自定义比较函数：
-  * Comparator<Integer> comparator = new Comparator<Integer>() {
+  * Comparator[Integer] comparator = new Comparator<>() {
   *     @Override
   *     public int compare(Integer o1, Integer o2) {
-  *         return o1 - o2;
+  *         return o1 - o2;   // o1.compareTo(o2);  string 比较
   *     }
   *  }
+  * 或者：private class XXComparator implements Comparator[String] {
+  *          @Override
+  *          public int compare(String a, String b) {
+  *              String s1 = a + b;
+  *              String s2 = b + a;
+  *              return s2.compareTo(s1);   // 从大到小排
+  *          }
+  *      }
+  * 因为无法显示<>, 所以用[]来代替
  
