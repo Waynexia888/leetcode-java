@@ -222,6 +222,7 @@
   * string.endsWith("world")   // true
   * string.indexOf('l')   // 2， 返回最早出现'l'这个字符的下标， 如果没找到，就返回-1
   * string.indexOf("llo")  // 2， 返回最早出现"llo"这个字符串的下标， 如果没找到，就返回-1
+  * string.valueOf(xx); // 返回xx类型参数的字符串表示形式； eg：valueOf(int i): 返回 int 参数的字符串表示形式； valueOf(char c): 返回 char 参数的字符串表示形式。valueOf(boolean b): 返回 boolean 参数的字符串表示形式。valueOf(Object obj): 返回 Object 参数的字符串表示形式。
 * 面试真题： Valid Palindrome 
   * 先考虑没有特殊字符和大写的情况
   * 将大写字符转成小写字符
