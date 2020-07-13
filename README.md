@@ -427,7 +427,8 @@
   * Map<String, String> map = new HashMap<>(); 同样，HashMap的增删改查效率比TreeMap高
   * map.put("jack", "CMU"); map.get("jack"); map.size(); map.isEmpty(); map.containsKey();
   * map中如果key值一样，则会覆盖原来key所对应的value值
-  * map的遍历: for(String key : map.keySet()) {}
+  * map的key遍历: for(String key : map.keySet()) {}
+  * map的value遍历: for(String value : map.values()) {}
 * 哈希表(Hash Table)的原理
   * 实现数据的快速查找
   * 哈希表设计要素：哈希函数(hash function), 冲突解决方案(collision solution), 重哈希(rehashing)
