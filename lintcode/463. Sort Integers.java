@@ -17,6 +17,7 @@ public class Sort_Integers {
         mergeSort(A, 0, A.length - 1, temp);
     }
 
+    // 分的过程时间复杂度O(n)
     private void mergeSort(int[] A, int start, int end, int[] temp) {
         // // 递归的出口
         if (start >= end) {
@@ -31,6 +32,7 @@ public class Sort_Integers {
     }
     
     // merge的步骤, 将上述两个有序的左右两个数组进行合并
+    // 合的过程时间复杂度O(nlogn)
     private void merge(int[] A, int start, int end, int[] temp) {
         int mid = (start + end) / 2;
         int leftIndex = start; // 左序列指针

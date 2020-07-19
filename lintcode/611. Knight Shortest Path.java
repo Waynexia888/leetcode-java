@@ -60,3 +60,104 @@ public class Solution {
         return -1;
     }
 }
+
+///////////////////////////////////////////////////////////////////
+// 双向宽度优先搜索
+/**
+ * Definition for a point.
+ * class Point {
+ *     int x;
+ *     int y;
+ *     Point() { x = 0; y = 0; }
+ *     Point(int a, int b) { x = a; y = b; }
+ * }
+ */
+
+public class Solution {
+    /**
+     * @param grid: a chessboard included 0 (false) and 1 (true)
+     * @param source: a point
+     * @param destination: a point
+     * @return: the shortest path 
+     */
+    int[][] DIRECTIONS = {
+        {1, 2},
+        {1, -2},
+        {-1, 2},
+        {-1, -2},
+        {2, 1},
+        {2, -1},
+        {-2, 1},
+        {-2, -1}
+    };
+    
+    public int shortestPath(boolean[][] grid, Point source, Point destination) {
+        // 双向宽度优先搜索
+        if (grid == null || grid.length == 0 || grid[0].length == 0) {
+            return -1;
+        }
+        // 如果起点和终点的位置一样， 则骑士不需要移动，返回0
+        if (source.x == destination.x && source.y == destination.y) {
+            return 0;
+        }
+        // 如果终点位置是1， 则不存在这样的路径， 返回-1
+        if (grid[destination.x][destination.y]) {
+            return -1;
+        }
+        
+        Queue<Point> forwardQueue = new LinkedList<>();
+        Queue<Point> backwardQueue = new LinkedList<>();
+        int row = grid.length;
+        int column = grid[0].length;
+        boolean[][] forwardSet = new boolean[row][column];
+        boolean[][] backwardSet = new boolean[row][column];
+        forwardQueue.offer(new Point(source.x, source.y));
+        backwardQueue.offer(new Point(destination.x, destination.y));
+        forwardSet[source.x][source.y] = true;
+        backwardSet[destination.x][destination.y] = true;
+        
+        int distance = 0;
+        while (!forwardQueue.isEmpty() && !backwardQueue.isEmpty()) {
+            distance++;
+            // 由当前queue扩展下一层queue，并在forwardSet里标记，如果有在backwardSet出现，则return distance
+            if (extendQueue(grid, forwardQueue, forwardSet, backwardSet)) {
+                return distance;
+            }
+            
+            distance++;
+            if (extendQueue(grid, backwardQueue, backwardSet, forwardSet)) {
+                return distance;
+            }
+        }
+        return -1;
+    }
+    
+    private boolean extendQueue(boolean[][] grid, Queue<Point> queue, boolean[][] visited, boolean[][] oppositeVisited) {
+        int size = queue.size();
+        for (int i = 0; i < size; i++) {
+            Point cur = queue.poll();
+            
+            for (int k = 0; k < 8; k++) {
+                int nx = cur.x + DIRECTIONS[k][0];
+                int ny = cur.y + DIRECTIONS[k][1];
+                if (!isValid(grid, nx, ny, visited)) {
+                    continue;
+                }
+                if (oppositeVisited[nx][ny]) {
+                    return true;
+                }
+                queue.offer(new Point(nx, ny));
+                visited[nx][ny] = true;
+            }
+        }
+        return false;
+    }
+    
+    private boolean isValid(boolean[][] grid, int x, int y, boolean[][] visited) {
+        // x, y 在棋盘内， 且所在位置的值不是1， 且没被访问过
+        if (x >= 0 && x < grid.length && y >= 0 && y < grid[0].length && !grid[x][y] && !visited[x][y]) {
+            return true;
+        }
+        return false;
+    }
+}
