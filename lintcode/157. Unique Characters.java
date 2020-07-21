@@ -24,3 +24,27 @@ public class Solution {
         return true;
     }
 }
+
+//////////////////////////////////////////
+public class Solution {
+    /*
+     * @param str: A string
+     * 
+     * @return: a boolean
+     */
+    public boolean isUnique(String str) {
+        // time:o(n^2), space: o(1)
+        if (str == null || str.length() == 0) {
+            return true;
+        }
+
+        for (int i = 0; i < str.length(); i++) {
+            for (int j = 1; j < str.length(); j++) {
+                if (j > i && str.charAt(j) == str.charAt(i)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
