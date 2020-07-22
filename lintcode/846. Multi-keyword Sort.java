@@ -38,4 +38,24 @@ public class Solution {
     }
 }
 
+//////////////////////////////////////////////
+public class Solution {
+    /**
+     * @param array: the input array
+     * @return: the sorted array
+     */
+    public int[][] multiSort(int[][] array) {
+        // Write your code here
+        Arrays.sort(array, new Comparator<int[]>() {
+            public int compare(int[] a, int[] b) {
+                if (a[1] != b[1]) {
+                    return b[1] - a[1];
+                }
+                return a[0] - b[0];
+            }
+        });
+        return array;
+    }
+}
+
 
