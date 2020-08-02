@@ -9,23 +9,28 @@ public class Solution {
         if (nums == null) {
             return results;
         }
+        
+        if (nums.length == 0) {
+            results.add(new ArrayList<>());
+            return results;
+        }
+        
         Arrays.sort(nums);
-        List<Integer> subset = new ArrayList<>();
-        dfs(nums, 0, subset, results);
+        dfs(nums, new ArrayList<>(), results, 0);
         return results;
     }
-
-    private void dfs(int[] nums, int startIndex, List<Integer> subset, List<List<Integer>> results) {
-        results.add(new ArrayList<Integer>(subset));
-
-        for (int i = startIndex; i < nums.length; i++) {
-            if (i != 0 && nums[i] == nums[i - 1] && i > startIndex) {
+    
+    private void dfs(int[] nums, List<Integer> temp, List<List<Integer>> results, int startIndex) {
+        results.add(new ArrayList<>(temp));
+        
+        for (int i = startIndex; i< nums.length; i++) {
+            if (i > startIndex && nums[i] == nums[i - 1]) {
                 continue;
             }
-
-            subset.add(nums[i]);
-            dfs(nums, i + 1, subset, results);
-            subset.remove(subset.size() - 1);
+            
+            temp.add(nums[i]);
+            dfs(nums, temp, results, i + 1); 
+            temp.remove(temp.size() - 1);
         }
     }
 }
