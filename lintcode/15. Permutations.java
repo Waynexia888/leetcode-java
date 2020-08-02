@@ -1,7 +1,6 @@
 public class Solution {
     /*
      * @param nums: A list of integers.
-     * 
      * @return: A list of permutations.
      */
     public List<List<Integer>> permute(int[] nums) {
@@ -10,34 +9,34 @@ public class Solution {
         if (nums == null) {
             return results;
         }
-
+        
         if (nums.length == 0) {
-            results.add(new ArrayList<Integer>());
+            results.add(new ArrayList<>());
             return results;
         }
-        boolean[] isUsed = new boolean[nums.length];
-        List<Integer> temp = new ArrayList<>();
-        dfs(nums, isUsed, temp, results);
+        
+        boolean[] visited = new boolean[nums.length];
+        dfs(nums, new ArrayList<>(), results, visited);
         return results;
     }
-
-    private void dfs(int[] nums, boolean[] isUsed, List<Integer> temp, List<List<Integer>> results) {
-        if (nums.length == temp.size()) {
-            results.add(new ArrayList<Integer>(temp));
+    
+    private void dfs(int[] nums, List<Integer> temp, List<List<Integer>> results, boolean[] visited) {
+        // 递归的出口
+        if (temp.size() == nums.length) {
+            results.add(new ArrayList<>(temp));
             return;
         }
-
+        
         for (int i = 0; i < nums.length; i++) {
-            if (isUsed[i] == true) {
+            if (visited[i]) {
                 continue;
             }
-
+            
             temp.add(nums[i]);
-            isUsed[i] = true;
-            dfs(nums, isUsed, temp, results);
+            visited[i] = true;
+            dfs(nums, temp, results, visited);
             temp.remove(temp.size() - 1);
-            isUsed[i] = false;
-
+            visited[i] = false;
         }
     }
 }
