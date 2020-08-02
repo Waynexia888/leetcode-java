@@ -107,3 +107,56 @@ public class Solution {
         }
     }
 }
+
+//////////////////////////////////////////////////////////
+
+/**
+ * Definition for Undirected graph.
+ * class UndirectedGraphNode {
+ *     int label;
+ *     ArrayList<UndirectedGraphNode> neighbors;
+ *     UndirectedGraphNode(int x) { label = x; neighbors = new ArrayList<UndirectedGraphNode>(); }
+ * };
+ */
+
+
+public class Solution {
+    /*
+     * @param nodes: a array of Undirected graph node
+     * @return: a connected set of a Undirected graph
+     */
+    public List<List<Integer>> connectedSet(List<UndirectedGraphNode> nodes) {
+        // DFS 
+        List<List<Integer>> components = new ArrayList<>();
+        if (nodes == null || nodes.size() == 0) {
+            return components;
+        }
+        
+        Set<Integer> visited = new HashSet<>();
+        
+        for (UndirectedGraphNode node : nodes) {
+            if (!visited.contains(node.label)) {
+                List<Integer> component = new ArrayList<>();
+                dfs(node, component, visited);
+                Collections.sort(component);
+                components.add(component);
+            }
+        }
+        return components;
+    }
+    
+    private void dfs(UndirectedGraphNode node, List<Integer> component, Set<Integer> visited) {
+        if (!visited.contains(node.label)) {
+            component.add(node.label);
+            visited.add(node.label);
+        }
+        
+        for (UndirectedGraphNode nei : node.neighbors) {
+            if (!visited.contains(nei.label)) {
+                visited.add(nei.label);
+                component.add(nei.label);
+                dfs(nei, component, visited);
+            }
+        }
+    }
+}
