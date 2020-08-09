@@ -16,7 +16,9 @@ public class Solution {
      * @return: the k closest points
      */
     public Point[] kClosest(Point[] points, Point origin, int k) {
-        // 基于 PriorityQueue, 从远到近排序。当 PQ 里超过 k 个的时候，就 pop 掉一个。 时间复杂度 
+        // 基于 PriorityQueue, 从远到近排序。当 PQ 里超过 k 个的时候，就 pop 掉一个。 
+        // 时间复杂度 O(nlogk)
+        // space: O(n)
 
         Point[] results = new Point[k];
         if (points == null || points.length == 0 || k <= 0) {
