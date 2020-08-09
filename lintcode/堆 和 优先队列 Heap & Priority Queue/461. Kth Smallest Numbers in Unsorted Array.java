@@ -64,3 +64,35 @@ public class Solution {
 // [1, 4, 3, 2, 5] 
 //     L  
 //  R 
+
+
+//////////////////////////////////////////////////////////////////
+public class Solution {
+    /**
+     * @param k:    An integer
+     * @param nums: An integer array
+     * @return: kth smallest element
+     */
+    public int kthSmallest(int k, int[] nums) {
+        // 维持一个size为k的最大堆
+        // time: O(nlogk)
+        if (nums == null || nums.length == 0 || k < 0) {
+            return -1;
+        }
+
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(k, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer a, Integer b) {
+                return b - a;
+            }
+        });
+
+        for (Integer number : nums) {
+            maxHeap.offer(number);
+            if (maxHeap.size() > k) {
+                maxHeap.poll();
+            }
+        }
+        return maxHeap.peek();
+    }
+}
