@@ -89,3 +89,49 @@ public class Solution {
         return head;
     }
 }
+
+//////////////////////////////////////////////////////////////
+/**
+ * Definition for ListNode
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+
+public class Solution {
+    /**
+     * @param head: The head of linked list.
+     * @return: You should return the head of the sorted linked list, using constant space complexity.
+     */
+    public ListNode sortList(ListNode head) {
+        // 用一个list来保存每一个节点的值， 然后对list进行排序，最后对list遍历并且构建新的链表
+        // time: O(nlogn), space: O(n)
+        if (head == null) {
+            return null;
+        }
+        
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode tail = dummy.next;
+        
+        List<Integer> list = new ArrayList<>();
+        while (tail != null) {
+            list.add(tail.val);
+            tail = tail.next;
+        }
+        
+        Collections.sort(list);
+        
+        tail = dummy.next;
+        for (int i = 0; i < list.size(); i++) {
+            tail.val = list.get(i);
+            tail = tail.next;
+        }
+        return dummy.next;
+    }
+}
