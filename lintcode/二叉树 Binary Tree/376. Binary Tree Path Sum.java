@@ -32,7 +32,7 @@ public class Solution {
         List<List<Integer>> leftPaths = binaryTreePathSum(root.left, target - root.val);
         List<List<Integer>> rightPaths = binaryTreePathSum(root.right, target - root.val);
 
-        // merge
+        // conquer
         for (List<Integer> l : leftPaths) {
             l.add(0, root.val); // 在index = 0的位置，插入root.val值
             result.add(l);
