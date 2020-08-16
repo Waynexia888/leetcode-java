@@ -85,3 +85,54 @@ public class Solution {
         return Math.max(getTreeHeight(root.left), getTreeHeight(root.right)) + 1;
     }
 }
+
+////////////////////////////////////////////////////////////////
+/**
+ * Definition of TreeNode:
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left, right;
+ *     public TreeNode(int val) {
+ *         this.val = val;
+ *         this.left = this.right = null;
+ *     }
+ * }
+ */
+
+public class Solution {
+    /**
+     * @param root: The root of binary tree.
+     * @return: True if this Binary tree is Balanced, or false.
+     */
+    
+    class ResultType {
+        public boolean isTreeBalanced;
+        int height;
+        public ResultType(boolean isTreeBalanced, int height) {
+            this.isTreeBalanced = isTreeBalanced;
+            this.height = height;
+        }
+    }
+    public boolean isBalanced(TreeNode root) {
+        // write your code here
+        ResultType results = dfs(root);
+        return results.isTreeBalanced;
+    }
+    
+    private ResultType dfs(TreeNode root) {
+        if (root == null) {
+            return new ResultType(true, 0);
+        }
+        // divide
+        ResultType left = dfs(root.left);
+        ResultType right = dfs(root.right);
+        
+        // conquer
+        // 左子树是平衡的，右子树也是平衡的，且高度差<= 1，那么整棵数就是平衡二叉树
+        if (left.isTreeBalanced && right.isTreeBalanced && Math.abs(left.height - right.height) <= 1) {
+            return new ResultType(true, Math.max(left.height, right.height) + 1);
+        }
+        return new ResultType(false, Math.max(left.height, right.height) + 1);
+        
+    }
+}

@@ -59,54 +59,49 @@
  * }
  */
 class ResultType {
-    public int minSumOfSubtree, sumOfTree;
     public TreeNode rootOfSubtree;
-    public ResultType(TreeNode rootOfSubtree, int minSumOfSubtree, int sumOfTree) {
+    public int minSubtreeSum;
+    public int sum;     //the sum of the whole subtree
+    public ResultType(TreeNode rootOfSubtree, int minSubtreeSum, int sum) {
         this.rootOfSubtree = rootOfSubtree;
-        this.minSumOfSubtree = minSumOfSubtree;
-        this.sumOfTree = sumOfTree;
+        this.minSubtreeSum = minSubtreeSum;
+        this.sum = sum;
     }
 }
-
 public class Solution {
     /**
      * @param root: the root of binary tree
      * @return: the root of the minimum subtree
      */
     public TreeNode findSubtree(TreeNode root) {
-        // 设树的节点数为n。
-        // 时间复杂度O(n)， 每个节点会被访问1次，时间复杂度为O(n)。
-        // 空间复杂度O(n)， 在树上递归的遍历，最多会在栈上占用O(n)的空间。
-        ResultType results = helper(root);
+        // write your code here
+        ResultType results = dfs(root);
         return results.rootOfSubtree;
     }
     
-    private ResultType helper(TreeNode root) {
-        // 当当前节点为叶节点为空时，返回0，即为递归出口。
+    private ResultType dfs(TreeNode root) {
         if (root == null) {
-            return new ResultType(null, Integer.MAX_VALUE, 0);
+            return new ResultType(null, 0, 0);
         }
-        // 获取左子树的权值和。
-        ResultType leftResult = helper(root.left);
-        // 获取右子树的权值和。
-        ResultType rightResult = helper(root.right);
-        // 当前的权值和为整棵二叉树
-        ResultType result = new ResultType(
-                                    root, 
-                                    leftResult.sumOfTree + rightResult.sumOfTree + root.val,  
-                                    leftResult.sumOfTree + rightResult.sumOfTree + root.val
-                                    );
-        // 判断是否在左子树，同时更新返回值
-        if (leftResult.minSumOfSubtree < result.minSumOfSubtree) {
-            result.minSumOfSubtree = leftResult.minSumOfSubtree;
-            result.rootOfSubtree = leftResult.rootOfSubtree;
+        
+        ResultType left = dfs(root.left);
+        ResultType right = dfs(root.right);
+        
+        int sum = left.sum + right.sum + root.val;
+        // 到了这一步还不知道minSubtreeSum是多少，因此假设minSubtreeSum 等于sum
+        int minSum = left.sum + right.sum + root.val; 
+        TreeNode node = root;
+        ResultType result = new ResultType(node, minSum, sum);
+        
+        if (left.rootOfSubtree != null && left.minSubtreeSum < result.minSubtreeSum) {
+            result.minSubtreeSum = left.minSubtreeSum;
+            result.rootOfSubtree = left.rootOfSubtree;
         }
-        // 判断是否在右子树，同时更新返回值
-        if (rightResult.minSumOfSubtree < result.minSumOfSubtree) {
-            result.minSumOfSubtree = rightResult.minSumOfSubtree;
-            result.rootOfSubtree = rightResult.rootOfSubtree;
+        
+        if (right.rootOfSubtree != null && right.minSubtreeSum < result.minSubtreeSum) {
+            result.minSubtreeSum = right.minSubtreeSum;
+            result.rootOfSubtree = right.rootOfSubtree;
         }
-        // 返回结果在根节点上
         return result;
     }
 }
