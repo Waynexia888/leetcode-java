@@ -9,16 +9,16 @@ public class Solution {
         // 时间复杂度:O(256n); space O(1)
         int ans = Integer.MAX_VALUE;
         String minStr = "";
-        
+
         int[] sourceHash = new int[256];
         int[] targetHash = new int[256];
-        
+
         for (char ch : target.toCharArray()) {
             targetHash[ch]++;
         }
-        
+
         int i = 0, j = 0;
-        
+
         for (i = 0; i < source.length(); i++) {
             while (j < source.length() && !vaild(sourceHash, targetHash)) {
                 sourceHash[source.charAt(j)]++;
@@ -34,7 +34,7 @@ public class Solution {
         }
         return minStr;
     }
-    
+
     private boolean vaild(int[] sourceHash, int[] targetHash) {
         for (int i = 0; i < 256; i++) {
             if (targetHash[i] > sourceHash[i]) {
@@ -43,4 +43,4 @@ public class Solution {
         }
         return true;
     }
-}
+} 
