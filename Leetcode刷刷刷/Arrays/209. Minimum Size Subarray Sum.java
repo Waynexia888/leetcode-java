@@ -29,6 +29,9 @@ class Solution {
     }
 }
 
+
+// 同向双指针 - 子数组问题
+// 进行中处理（1个for loop处理）
 // 本题思想有点像模拟sliding window
 // 时间复杂度O(n);
 // 空间复杂度O(1);
