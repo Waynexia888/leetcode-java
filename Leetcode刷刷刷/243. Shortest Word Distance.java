@@ -33,3 +33,5 @@ class Solution {
         return result;   
     }
 }
+
+// 本题的思想是使用int类型来记录状态，达到优化时间复杂度的效果
