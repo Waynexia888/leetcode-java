@@ -17,6 +17,17 @@ first by name, then by decimal value of the Roman numeral.
 // complete the function sortRoman, The function must return the array sorted 
 // first by given name, then by ordinal
 
-public void sortRoman(String[] names) {
 
+
+// https://github.com/spkenn5/royal-sorter/blob/master/src/Main.java
+public static String[] sortRoman(String[] names) {
+    // String[] array = new String[names.length];
+    // int index = 0;
+    // for (String name : names) {
+    //     array[index++] = name.split(" ")
+    // }
+
+    Collections.sort(list, new Comparator<String[]>() {
+        
+    })
 }
