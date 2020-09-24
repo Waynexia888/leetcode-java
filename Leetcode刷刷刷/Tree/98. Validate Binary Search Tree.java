@@ -53,7 +53,7 @@ class Solution {
         return helper(root, null, null);
     }
     
-    public boolean helper(TreeNode root, int min, int max) {
+    public boolean helper(TreeNode root, Integer min, Integer max) {
         if (root == null) {
             return true;
         }
