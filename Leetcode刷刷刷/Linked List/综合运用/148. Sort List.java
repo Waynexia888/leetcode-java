@@ -11,7 +11,7 @@
 class Solution {
     public ListNode sortList(ListNode head) {
         // the step of merge sort 
-        // time: O(nlogn); space: O(1)
+        // time: O(nlogn); space: O(n) because recursion
         if (head == null || head.next == null) {
             return head;
         }
