@@ -60,7 +60,7 @@ class Solution {
         ListNode slow = dummy;
         ListNode fast = dummy;
         
-        // firstly, let fast pointer move to the previous node of the delete node, use one for loop;
+        // firstly, let fast pointer move n + 1 steps
 
         for (int i = 0; i <= n; i++) {
             fast = fast.next;
