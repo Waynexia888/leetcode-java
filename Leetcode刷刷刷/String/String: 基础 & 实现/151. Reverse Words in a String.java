@@ -1,6 +1,10 @@
 class Solution {
     public String reverseWords(String s) {
         // time: O(n); space: O(n)
+        if (s == null || s.length() == 0) {
+            return s;
+        }
+        
         s = s.trim();
         String[] arr = s.split("\\s+");
         
