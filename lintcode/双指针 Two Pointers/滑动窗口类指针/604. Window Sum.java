@@ -59,3 +59,36 @@ public class Solution {
         return results;
     }
 }
+
+
+//////////////////////////////
+public class Solution {
+    /**
+     * @param nums: a list of integers.
+     * @param k: length of window.
+     * @return: the sum of the element inside the window at each moving.
+     */
+    public int[] winSum(int[] nums, int k) {
+        // write your code here
+        if (nums == null || nums.length == 0 || k == 0) {
+            return new int[0];
+        }
+        
+        int[] result = new int[nums.length - k + 1];
+        int index = 0;
+        int i = 0, j = 0;
+        int sum = 0;
+        while (i < nums.length - k + 1) {
+            while (j < nums.length && j - i < k) {
+                sum += nums[j];
+                j++;
+            }
+            
+            result[index++] = sum;
+            
+            sum = sum - nums[i];
+            i++;
+        }
+        return result;
+    }
+}
