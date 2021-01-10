@@ -99,4 +99,14 @@ public class MyQueue {
 stack1: to buffer all new elements -> push(x) goes to stack1
 stack2: to pop out the 1st elements
     case2.1 if stack2 is empty, then we move all the element from stack1 to stack2 one by one. Then pop the top element from stack2
-    case2.2 if stack2 is not empty, then we call stack2.pop()
+    case2.2 if stack2 is not empty, then we call stack2.pop() 
+
+
+push() -> O(1)
+pop() -> O(1)
+1st time call pop(): O(n) (pop from stack1) + O(n) (push to stack2) + O(1)
+2nd time call pop(): O(1)
+3rd time call pop(): O(1)
+...
+nth time call pop(): O((2n + 1) * 1 + 1 * (n - 1)) / n = 3n / n = 3 -> O(1)
+top() -> O(1)
