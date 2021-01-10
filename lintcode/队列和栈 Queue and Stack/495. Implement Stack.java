@@ -60,3 +60,11 @@ public class Stack {
     }
 }
 
+push() -> O(1)
+pop() -> O(1)
+top() -> O(1)
+isEmpty() -> O(1)
+
+ArrayList 和 LinkedList CRUD 时间复杂度：
+https://blog.csdn.net/weixin_43864727/article/details/88384142
+
