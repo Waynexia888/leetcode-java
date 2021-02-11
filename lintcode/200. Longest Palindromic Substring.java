@@ -43,3 +43,42 @@ public class Longest_Palindromic_Substring {
         return s.substring(left + 1, right); // 跳出循环后，取值在[left + 1, right -1]，前闭后闭
     }
 }
+
+//////////////////////////////////////////////////
+
+public class Solution {
+    /**
+     * @param s: input string
+     * @return: a string as the longest palindromic substring
+     */
+    public String longestPalindrome(String s) {
+        // write your code here
+        if (s == null || s.length() == 0) {
+            return null;
+        }
+        
+        String result = "";
+        for (int i = 0; i < s.length(); i++) {
+            for (int j = i; j < s.length(); j++) {
+                String subStr = s.substring(i, j + 1);
+                if (isPalindrome(s, i, j) && subStr.length() > result.length()) {
+                    result = subStr;
+                }
+            }
+        }
+        return result;
+    }
+    
+    
+  
+    private boolean isPalindrome(String s, int start, int end) {
+        while (start < end) {
+            if (s.charAt(start) != s.charAt(end)) {
+                return false;
+            }
+            start++;
+            end--;
+        }
+        return true;
+    }
+}
