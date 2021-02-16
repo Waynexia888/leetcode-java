@@ -11,7 +11,7 @@ public class Solution {
         }
         
         Arrays.sort(numbers);
-        for (int i = 0; i < numbers.length; i++) {
+        for (int i = 0; i < numbers.length - 2; i++) {
             if (i != 0 && numbers[i] == numbers[i - 1]) {
                 continue;
             }
