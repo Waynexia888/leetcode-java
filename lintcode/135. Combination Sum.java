@@ -41,3 +41,66 @@ public class Solution {
         
     }
 }
+
+//////////////////////////////////////////////////////
+public class Solution {
+    /**
+     * @param candidates: A list of integers
+     * @param target: An integer
+     * @return: A list of lists of integers
+     */
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        // write your code here
+        List<List<Integer>> results = new ArrayList<>();
+        if (candidates == null || candidates.length == 0) {
+            return results;
+        }
+
+        int[] nums = removeDuplicates(candidates);
+        List<Integer> temp = new ArrayList<>();
+        dfs(nums, 0, temp, results, target);
+        return results;
+    }
+
+    private int[] removeDuplicates(int[] candidates) {
+        Arrays.sort(candidates);
+
+        int index = 0;
+        for (int i = 0; i < candidates.length; i++) {
+            if (candidates[index] != candidates[i]) {
+                index++;
+                candidates[index] = candidates[i];
+            }
+        }
+
+        int[] nums = new int[index + 1];
+        for (int i = 0; i < index + 1; i++) {
+            nums[i] = candidates[i];
+        }
+        return nums;
+    }
+
+    private void dfs(int[] nums, 
+                    int startIndex, 
+                    List<Integer> temp, 
+                    List<List<Integer>> results, 
+                    int remainingTarget) {
+        // base case
+        if (remainingTarget < 0) {
+            return;
+        }
+
+        if (remainingTarget == 0) {
+            results.add(new ArrayList<Integer>(temp));
+        }
+
+        for (int i = startIndex; i < nums.length; i++) {
+            temp.add(nums[i]);
+            dfs(nums, i, temp, results, remainingTarget - nums[i]);
+            temp.remove(temp.size() - 1);
+        }
+
+
+    }
+}
+        
