@@ -196,3 +196,50 @@ public class Solution {
     }
 }
 
+/////////////////////////////////////////////////////////////////
+public class Solution {
+    /**
+     * @param grid: a boolean 2D matrix
+     * @return: an integer
+     */
+    public static int[] dx = new int[]{0, 0, -1, 1};
+    public static int[] dy = new int[]{1, -1, 0, 0};
+    public int numIslands(boolean[][] grid) {
+        // 找到一个小岛(x, y)
+        // 将当前点放入访问数组visited中
+        // 深度搜索(x, y)的周围节点
+        //      检查周围点的有效性（是否在矩阵中， 为1， 之前没被访问过）
+        //          对有效点进行dfs递归搜索
+
+        if (grid == null || grid.length == 0 || grid[0].length == 0) {
+            return 0;
+        }
+
+        int rows = grid.length;
+        int columns = grid[0].length;
+        boolean[][] visited = new boolean[rows][columns];
+        int number = 0;
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                if (grid[i][j] && !visited[i][j]) {
+                    dfs(grid, i, j, visited);
+                    number++;
+                }
+            }
+        }
+        return number;
+    }
+
+    private void dfs(boolean[][] grid, int x, int y, boolean[][] visited) {
+        visited[x][y] = true;
+        int rows = grid.length;
+        int columns = grid[0].length;
+        for (int k = 0; k < 4; k++) {
+            int nx = x + dx[k];
+            int ny = y + dy[k];
+            if (nx >= 0 && nx < rows && ny >= 0 && ny < columns && grid[nx][ny] && !visited[nx][ny]) {
+                dfs(grid, nx, ny, visited);
+            }
+        }
+    }
+}
