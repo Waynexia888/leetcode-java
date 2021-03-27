@@ -95,3 +95,36 @@ public class Solution {
         }
     }
 }
+
+////////////////////////////////////
+为什么要判断str 是否为空，str 是否为空串？
+在java中， String是一个类，类是一个引用数据类型，里面存储的是指向对象的地址（eg. 0x12345678）
+通过地址才能找到真实对象。所以在做非空判断时，需要首先判断是否有地址，null就代表没有地址，
+即未被初始化。
+如果string为null，调用.length() 方法时，就会报空指针异常。
+所以对于一个类（或引用数据类型），先要判断是否为null，然后才可以调用这个对象的所有方法。
+
+/////////////////////////////////////
+class Person {
+    String hair;
+    String eyes;
+    public Person(String hair, String eyes) {
+        this.hair = hair;
+        this.eyes = eyes;
+    }
+}
+
+Person 就是一个类;
+Person p = new Person();  // 实例化
+p 是一个对象名字;
+
+对象是根据类创建的。在Java中，使用关键字 new 来创建一个新的对象。创建对象需要以下三步：
+声明：声明一个对象，包括对象名称和对象类型。
+    String str;
+
+实例化：使用关键字 new 来创建一个对象， 在构造一个实例的时候需要在内存中开辟空间
+    String str = new String();
+ 
+初始化：实例化的基础上，给对象赋值的过程
+    str = "hello";
+    
