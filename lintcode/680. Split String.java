@@ -31,7 +31,7 @@ public class Solution {
         
         // 拆分两个字符的情况,需要做下标越界处理
         // 因为当index = length - 1的时候， index + 2 > s.length(), 递归没出口了
-        if (index + 1 < s.length()) {
+        if (index <= s.length() - 2) {
             str = s.substring(index, index + 2);
             temp.add(str);
             dfs(s, index + 2, temp, results);
