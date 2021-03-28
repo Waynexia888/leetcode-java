@@ -33,3 +33,39 @@ public class Solution {
     }
 }
 
+//////////////////////////////////////////////////////////////////
+
+public class Solution {
+    /**
+     * @param digits: A digital string
+     * @return: all posible letter combinations
+     */
+    public String[] keyboard = new String[]{"", "", "abc", "def", "ghi", "jkl", 
+                                            "mno", "pqrs", "tuv", "wxyz"};
+    public List<String> letterCombinations(String digits) {
+        // write your code here
+        List<String> results = new ArrayList<>();
+        if (digits == null || digits.length() == 0) {
+            return results;
+        }
+        String temp = new String();
+        dfs(digits, 0, temp, results);
+        return results;
+    }
+
+    private void dfs(String digits, int startIndex, String temp, List<String> results) {
+        if (startIndex == digits.length()) {
+            results.add(new String(temp));
+            return;
+        }
+
+        int digit = digits.charAt(startIndex) - '0';
+        String str = keyboard[digit];  // "abc"
+        for (int i = 0; i < str.length(); i++) {
+            temp += str.charAt(i);
+            dfs(digits, startIndex + 1, temp, results);
+            temp = temp.substring(0, temp.length() - 1);
+        }
+
+    }
+}
