@@ -39,3 +39,42 @@ public class Solution {
         }
     }
 }
+
+本题与1208.Target Sum类型差不多，要么分割一个characters，要么分割两个characters
+
+/////////////////////////////////////////////////////////////
+
+public class Solution {
+    /*
+     * @param : a string to be split
+     * @return: all possible split string array
+     */
+    public List<List<String>> splitString(String s) {
+        // write your code here
+        List<List<String>> results = new ArrayList<>();
+        if (s == null) {
+            return results;
+        }
+        List<String> temp = new ArrayList<>();
+        dfs(s, 0, temp, results);
+        return results;
+    }
+
+    private void dfs(String s, int startIndex, List<String> temp, List<List<String>> results) {
+        if (startIndex == s.length()) {
+            results.add(new ArrayList<>(temp));
+            return;
+        }
+
+        for (int i = startIndex; i < s.length(); i++) {
+            if (i >= startIndex + 2) {
+                break;
+            }
+            
+            String str = s.substring(startIndex, i + 1);
+            temp.add(str);
+            dfs(s, i + 1, temp, results);
+            temp.remove(temp.size() - 1);
+        }
+    }
+}

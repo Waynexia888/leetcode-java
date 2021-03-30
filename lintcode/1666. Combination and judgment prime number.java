@@ -25,6 +25,8 @@
 // and only 3 and 5 are primes.
 
 
+https://www.jiuzhang.com/problem/combination-and-judgment-prime-number/   
+
 public class Solution {
     /**
      * @param a: the n numbers
@@ -72,6 +74,126 @@ public class Solution {
             return false;
         }
         
+        for (int i = 2; i <= Math.sqrt(number); i++) {
+            if (number % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+public class Solution {
+    /**
+     * @param a: the n numbers
+     * @param k: the number of integers you can choose
+     * @return: how many ways that the sum of the k integers is a prime number
+     */
+    public int getWays(int[] a, int k) {
+        // Write your code here
+        if (a == null || a.length == 0) {
+            return -1;
+        }
+
+        Arrays.sort(a);
+        List<Integer> temp = new ArrayList<>();
+        List<List<Integer>> results = new ArrayList<>();
+        dfs(a, k, 0, temp, results);
+
+        int count;
+        for (int i = 0; i < results.size(); i++) {
+            List<Integer> res = results.get(i);
+            int ans = 0;
+            for (int j = 0; j < res.size(); j++) {
+                ans += res.get(j);
+            }
+            if (isPrime(ans)) {
+                count++;
+            }
+        }
+        return count;
+    } 
+
+    private void dfs(int[] a, int k, int startIndex, List<Integer> temp, List<List<Integer>> results) {
+        // base case
+        if (temp.size() == k) {
+            results.add(new ArrayList<>(temp));
+            return;
+        }
+
+        for (int i = startIndex; i < a.length; i++) {
+            temp.add(a[i]);
+            dfs(a, k, i + 1, temp, results);
+            temp.remove(temp.size() - 1);
+        }
+    }
+
+    private boolean isPrime(int number) {
+        if (number < 2) {
+            return false;
+        }
+
+        for (int i = 2; i <= Math.sqrt(number); i++) {
+            if (number % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+public class Solution {
+    /**
+     * @param a: the n numbers
+     * @param k: the number of integers you can choose
+     * @return: how many ways that the sum of the k integers is a prime number
+     */
+    public int getWays(int[] a, int k) {
+        // Write your code here
+        if (a == null || a.length == 0) {
+            return -1;
+        }
+
+        Arrays.sort(a);
+        List<Integer> temp = new ArrayList<>();
+        List<Integer> results = new ArrayList<>();
+        dfs(a, k, 0, temp, results);
+
+        int count = 0;
+        for (int i = 0; i < results.size(); i++) {
+            if (isPrime(results.get(i))) {
+                count++;
+            }
+        }
+        return count;
+    } 
+
+    private void dfs(int[] a, int k, int startIndex, List<Integer> temp, List<Integer> results) {
+        // base case
+        if (temp.size() == k) {  
+            int ans = 0;
+            for (int k = 0; k < temp.size(); k++) {
+                ans += temp.get(k);
+            }
+            results.add(ans);
+            return;
+        }
+
+        for (int i = startIndex; i < a.length; i++) {
+            temp.add(a[i]);
+            dfs(a, k, i + 1, temp, results);
+            temp.remove(temp.size() - 1);
+        }
+    }
+
+    private boolean isPrime(int number) {
+        if (number < 2) {
+            return false;
+        }
+
         for (int i = 2; i <= Math.sqrt(number); i++) {
             if (number % i == 0) {
                 return false;
