@@ -58,3 +58,72 @@ public class Kth_Largest_Element {
         return nums[right + 1];
     }
 }
+
+
+/////////////////////////////////////////////////
+
+public class Solution {
+    /**
+     * @param n: An integer
+     * @param nums: An array
+     * @return: the Kth largest element
+     */
+    public int kthLargestElement(int n, int[] nums) {
+        // write your code here
+        if (nums == null || nums.length == 0) {
+            return -1;
+        }
+        
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> (a - b));   // k size
+        for (int num : nums) {
+            maxHeap.offer(num);
+        }
+
+        while (maxHeap.size() > n) { 
+            maxHeap.poll();
+        }
+        return maxHeap.poll();
+    }
+}
+
+// time: O(nlog(n));
+// space: O(n), where n is your size
+
+/////////////////////////////////////////////////
+public class Solution {
+    /**
+     * @param n: An integer
+     * @param nums: An array
+     * @return: the Kth largest element
+     */
+    public int kthLargestElement(int n, int[] nums) {
+        // write your code here
+        if (nums == null || nums.length == 0) {
+            return -1;
+        }
+        
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();   // k size
+        for (int num : nums) {
+            minHeap.offer(num);
+            if (minHeap.size() > n) { 
+                minHeap.poll();
+            }
+        }
+
+        return minHeap.poll();
+    }
+}
+
+// time: O(nlog(k));
+// space: O(k), where n is your size
+
+
+
+
+
+
+
+
+
+
+
