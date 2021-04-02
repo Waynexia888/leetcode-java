@@ -26,6 +26,7 @@ public class Solution {
 }
 
 
+
 /////////////////
 
 public class Solution {
@@ -55,6 +56,39 @@ public class Solution {
             if (j == target.length()) {
                 return i;
             }
+        }
+        return -1;
+    }
+}
+
+///////////////////////////////////////////////////
+
+public class Solution {
+    /**
+     * @param source: 
+     * @param target: 
+     * @return: return the index
+     */
+    public int strStr(String source, String target) {
+        // Write your code here
+ 
+
+        if (target.length() > source.length()) {
+            return -1;
+        }
+
+        for (int i = 0; i < source.length() - target.length() + 1; i++) {
+            int j = 0;
+            while (j < target.length()) {
+                if (source.charAt(i + j) != target.charAt(j)) {
+                    break;
+                }
+                j++;
+            }
+            if (j == target.length()) {
+                return i;
+            }
+
         }
         return -1;
     }
