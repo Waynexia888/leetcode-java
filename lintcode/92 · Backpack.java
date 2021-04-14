@@ -39,3 +39,40 @@ public class Solution {
         return -1;
     }
 }
+
+
+///////////////////////////////////////////////////////////////
+
+public class Solution {
+    /**
+     * @param m: An integer m denotes the size of a backpack
+     * @param A: Given n items with size A[i]
+     * @return: The maximum size
+     */
+    public int backPack(int m, int[] A) {
+        // write your code here
+        if (A == null || A.length == 0) {
+            return 0;
+        }
+
+        // state: dp[i][w] 代表前i个物品 凑出<= j的最大重量和（是多少）
+        int n = A.length;
+        int[][] dp = new int[n + 1][m + 1];
+        // initialization: dp[0][0...w] = 0
+        for (int i = 0; i <= m; i++) {
+            dp[0][i] = 0;
+        }
+        // function: dp[i][w] = max(dp[i - 1][w], dp[i - 1][w - A[i - 1]] + A[i - 1] if w >= A[i - 1])
+        for (int i = 1; i <= n; i++) {
+            for (int w = 0; w <= m; w++) {
+                if (w >= A[i - 1]) {
+                    dp[i][w] = Math.max(dp[i - 1][w], dp[i - 1][w - A[i - 1]] + A[i - 1]);
+                } else {
+                    dp[i][w] = dp[i - 1][w];
+                }
+            }
+        }
+        // answer: dp[n][m]
+        return dp[n][m];
+    }
+}
