@@ -35,3 +35,36 @@ public class Valid_Palindrome {
         return Character.isLetter(c) || Character.isDigit(c);
     }
 }
+
+///////////////////////////////////////////////////////////
+
+public class Solution {
+    /**
+     * @param s: A string
+     * @return: Whether the string is a valid palindrome
+     */
+    public boolean isPalindrome(String s) {
+        // write your code here
+        if (s == null || s.length() == 0) {
+            return true;
+        }
+
+        char[] ss = s.toCharArray();
+        
+        int left = 0, right = ss.length - 1;
+        while (left < right) {
+            while (left < right && (!Character.isLetter(ss[left]) && !Character.isDigit(ss[left]))) {
+                left++;
+            }
+            while (left < right && (!Character.isLetter(ss[right]) && !Character.isDigit(ss[right]))) {
+                right--;
+            }
+            if (left < right && Character.toLowerCase(ss[left]) != Character.toLowerCase(ss[right])) {
+                return false; 
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+}
