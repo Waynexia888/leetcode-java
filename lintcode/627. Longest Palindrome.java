@@ -32,3 +32,39 @@ public class Longest_Palindrome {
         }
     }
 }
+
+///////////////////////////////////////////////////
+
+public class Solution {
+    /**
+     * @param s: a string which consists of lowercase or uppercase letters
+     * @return: the length of the longest palindromes that can be built
+     */
+    public int longestPalindrome(String s) {
+        // write your code here
+       
+        int[] alpha = new int[256];
+        int[] Alpha = new int[256];
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (c >= 'a') {
+                alpha[c]++;
+            } else {
+                Alpha[c]++;
+            }  
+        }
+
+        int len = s.length();
+        for (int i = 0; i < 256; i++) {
+            if (alpha[i] % 2 == 1) {
+                len--;
+            }
+            if (Alpha[i] % 2 == 1) {
+                len--;
+            }
+        }
+        
+        return len == s.length() ? len : len + 1;
+    }
+}
+
