@@ -67,3 +67,39 @@ public class TwoSum {
         return false;
     }
 }
+
+//////////////////////////////////////////////////////
+public class TwoSum {
+    /**
+     * @param number: An integer
+     * @return: nothing
+     */
+    public Map<Integer, Integer> map = new HashMap<>();
+    public void add(int number) {
+        // write your code here
+        map.put(number, map.getOrDefault(number, 0) + 1);
+    }
+
+    /**
+     * @param value: An integer
+     * @return: Find if there exists any pair of numbers which sum is equal to the value.
+     */
+    public boolean find(int value) {
+        // write your code here
+        for (Integer key : map.keySet()) {
+            int num = value - key;
+            if (num == key && map.containsKey(num) && map.get(num) >= 2) {
+                return true;
+            }
+            if (num != key && map.containsKey(num) && map.get(num) >= 1) {
+                return true;
+            }
+            // int count = num == key ? 2 : 1;
+            // if (map.getOrDefault(num, 0) >= count) {
+            //     return true;
+            // }
+            
+        }
+        return false;
+    }
+}
