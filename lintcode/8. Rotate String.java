@@ -31,3 +31,39 @@ public class Solution {
         }
     }
 }
+
+
+//////////////////////////////////////////////////////////
+public class Solution {
+    /**
+     * @param str: An array of char
+     * @param offset: An integer
+     * @return: nothing
+     */
+    public void rotateString(char[] str, int offset) {
+        // write your code here
+        if (str == null || str.length == 0) {
+            return;
+        }
+        int n = str.length;
+        offset = offset % n;
+        reverse(str, 0, n - offset - 1);
+        reverse(str, n - offset, n - 1);
+        reverse(str, 0, n - 1);  
+    }
+
+    private void reverse(char[] str, int i, int j) {
+        while (i < j) {
+            char temp = str[i];
+            str[i] = str[j];
+            str[j] = temp;
+            i++;
+            j--;
+        }
+    }
+}
+
+// 三步翻转法
+// abcd -> dcba
+// efg -> gfe
+// dcbagfe -> efgabcd
