@@ -108,3 +108,34 @@ public class Solution {
         return count;
     }
 }
+
+////////////////////////////////////////////////////////////////////
+public class Solution {
+    /**
+     * @param nums: an array of integer
+     * @param target: An integer
+     * @return: An integer
+     */
+    public int twoSum6(int[] nums, int target) {
+        // write your code here
+        Map<Integer, Integer> map = new HashMap<>();
+        for (Integer num : nums) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+
+        int count = 0;
+        for (Integer key : map.keySet()) {
+            // {1: 2, 2: 1, 45: 1, 46: 2}
+            int another = target - key;
+            if (key < another && map.containsKey(another)) {
+                count++;
+                continue;
+            }
+            if (key == another && map.get(another) >= 2) {
+                count++;
+                continue;
+            }
+        }
+        return count;
+    }
+}
