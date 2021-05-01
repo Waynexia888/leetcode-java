@@ -35,3 +35,5 @@ public class Solution {
 //     also update the minimum radius at the same time
 // houses -> n; heaters -> m 
 // m * log(m) + n * log(m) = O((m + n) * log(m))
+
+// 假设每个heater的radius是r， 如果一个heater的位置是x， 那么【x - r, x + r】这个范围内的房屋都会被加热
