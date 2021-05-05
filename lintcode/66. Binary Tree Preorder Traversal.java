@@ -67,6 +67,7 @@ public class Solution {
         }
         
         Stack<TreeNode> stack = new Stack<>();
+       
         stack.push(root);
         
         while (!stack.isEmpty()) {
