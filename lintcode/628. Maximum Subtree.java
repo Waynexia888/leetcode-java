@@ -81,3 +81,106 @@ public class Solution {
         return sum;
     }
 }
+
+//////////////////////////////////////////////////////////////////////////
+/**
+ * Definition of TreeNode:
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left, right;
+ *     public TreeNode(int val) {
+ *         this.val = val;
+ *         this.left = this.right = null;
+ *     }
+ * }
+ */
+class ResultType {
+    public int maxSum, wholeTreeSum;
+    public TreeNode maxRoot;
+    public ResultType(int maxSum, int wholeTreeSum, TreeNode maxRoot) {
+        this.maxSum = maxSum;
+        this.wholeTreeSum = wholeTreeSum;
+        this.maxRoot = maxRoot;
+    }
+}
+
+public class Solution {
+    /**
+     * @param root: the root of binary tree
+     * @return: the maximum weight node
+     */
+    public TreeNode findSubtree(TreeNode root) {
+        // write your code here
+        ResultType result = dfs(root);
+        return result.maxRoot;
+    }
+
+    private ResultType dfs(TreeNode root) {
+        if (root == null) {
+            return new ResultType(Integer.MIN_VALUE, 0, null);
+        }
+
+        ResultType leftResult = dfs(root.left);
+        ResultType rightResult = dfs(root.right);
+
+        ResultType result = new ResultType(
+            leftResult.wholeTreeSum + rightResult.wholeTreeSum + root.val,
+            leftResult.wholeTreeSum + rightResult.wholeTreeSum + root.val,
+            root
+        );
+
+        if (leftResult.maxSum > result.maxSum) {
+            result.maxSum = leftResult.maxSum;
+            result.maxRoot = leftResult.maxRoot;
+        }
+
+        if (rightResult.maxSum > result.maxSum) {
+            result.maxSum = rightResult.maxSum;
+            result.maxRoot = rightResult.maxRoot;
+        }
+        return result;
+    }
+}
+/////////////////////////////////////////////////////////////
+/**
+ * Definition of TreeNode:
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left, right;
+ *     public TreeNode(int val) {
+ *         this.val = val;
+ *         this.left = this.right = null;
+ *     }
+ * }
+ */
+
+public class Solution {
+    /**
+     * @param root: the root of binary tree
+     * @return: the maximum weight node
+     */
+    public int maxSum = Integer.MIN_VALUE;
+    public TreeNode maxRoot = null;
+
+    public TreeNode findSubtree(TreeNode root) {
+        // write your code here
+        dfs(root);
+        return maxRoot;
+    }
+
+    private int dfs(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int leftSum = dfs(root.left);
+        int rightSum = dfs(root.right);
+        int subSum = leftSum + rightSum + root.val;
+
+        if (subSum > maxSum) {
+            maxSum = subSum;
+            maxRoot = root;
+        }
+        return subSum;
+    }
+}
