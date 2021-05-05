@@ -86,3 +86,63 @@ public class Solution {
         return subSum;
     }
 }
+
+//////////////////////////////////////////////////////////
+/**
+ * Definition of TreeNode:
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left, right;
+ *     public TreeNode(int val) {
+ *         this.val = val;
+ *         this.left = this.right = null;
+ *     }
+ * }
+ */
+class ResultType {
+    public TreeNode minRoot;
+    public int minSum, wholeTreeSum;
+    public ResultType(int minSum, int wholeTreeSum, TreeNode minRoot) {
+        this.minSum = minSum;
+        this.wholeTreeSum = wholeTreeSum;
+        this.minRoot = minRoot;
+    }
+}
+
+public class Solution {
+    /**
+     * @param root: the root of binary tree
+     * @return: the root of the minimum subtree
+     */
+    public TreeNode findSubtree(TreeNode root) {
+        // write your code here
+        ResultType res = dfs(root);
+        return res.minRoot;
+    }
+
+    private ResultType dfs(TreeNode root) {
+        if (root == null) {
+            return new ResultType(Integer.MAX_VALUE, 0, null);
+        }
+
+        ResultType leftResult = dfs(root.left);
+        ResultType rightResult = dfs(root.right);
+
+        ResultType result = new ResultType(
+            leftResult.wholeTreeSum + rightResult.wholeTreeSum + root.val,
+            leftResult.wholeTreeSum + rightResult.wholeTreeSum + root.val,
+            root
+        );
+
+        if (leftResult.minSum < result.minSum) {
+            result.minSum = leftResult.minSum;
+            result.minRoot = leftResult.minRoot;
+        }
+
+        if (rightResult.minSum < result.minSum) {
+            result.minSum = rightResult.minSum;
+            result.minRoot = rightResult.minRoot;
+        }
+        return result;
+    }
+}
