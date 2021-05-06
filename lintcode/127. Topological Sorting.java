@@ -126,3 +126,57 @@ public class Solution {
         return results;
     }
 }
+
+////////////////////////////////////////////////////////////////
+/**
+ * Definition for Directed graph.
+ * class DirectedGraphNode {
+ *     int label;
+ *     List<DirectedGraphNode> neighbors;
+ *     DirectedGraphNode(int x) {
+ *         label = x;
+ *         neighbors = new ArrayList<DirectedGraphNode>();
+ *     }
+ * }
+ */
+
+public class Solution {
+    /**
+     * @param graph: A list of Directed graph node
+     * @return: Any topological order for the given graph.
+     */
+    public ArrayList<DirectedGraphNode> topSort(ArrayList<DirectedGraphNode> graph) {
+        // write your code here
+        ArrayList<DirectedGraphNode> results = new ArrayList<>();
+
+        // using hashmap to count in-degree
+        Map<DirectedGraphNode, Integer> map = new HashMap<>();
+        for (DirectedGraphNode node : graph) {
+            for (DirectedGraphNode nei : node.neighbors) {
+                map.put(nei, map.getOrDefault(nei, 0) + 1);
+            }
+        }
+        
+        // find node with in-degree = 0, and put it into queue
+        Queue<DirectedGraphNode> queue = new LinkedList<>();
+        for (DirectedGraphNode node : graph) {
+            if (!map.containsKey(node)) {
+                queue.offer(node);
+            }
+        }
+
+        // bfs 
+        while (!queue.isEmpty()) {
+            DirectedGraphNode n = queue.poll();
+            results.add(n);
+            for (DirectedGraphNode nei : n.neighbors) {
+                map.put(nei, map.get(nei) - 1);
+                if (map.get(nei) == 0) {
+                    queue.offer(nei);
+                }
+            } 
+        }
+
+        return results;
+    }
+}

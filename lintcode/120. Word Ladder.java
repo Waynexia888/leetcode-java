@@ -142,3 +142,64 @@ public class Solution {
     }
 }
 
+//////////////////////////////////////////////////////////////
+public class Solution {
+    /*
+     * @param start: a string
+     * @param end: a string
+     * @param dict: a set of string
+     * @return: An integer
+     */
+    public int ladderLength(String start, String end, Set<String> dict) {
+        // write your code here
+        
+        dict.add(start);
+        dict.add(end);
+
+        Queue<String> queue = new LinkedList<>();
+        Set<String> set = new HashSet<>();
+        queue.offer(start);
+        set.add(start);
+
+        int res = 0;
+        while (!queue.isEmpty()) {
+            res++;
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                String s = queue.poll();
+                if (s.equals(end)) {
+                    return res;
+                }
+                List<String> list = getWords(s, dict);
+                for (String word : list) {
+                    if (!set.contains(word)) {
+                        queue.offer(word);
+                        set.add(word);
+                    }
+                }
+            }
+        }
+        return res;
+    }
+
+    private List<String> getWords(String s, Set<String> dict) {
+        List<String> results = new ArrayList<>();
+        for (int i = 0; i < s.length(); i++) {
+            for (char c = 'a'; c <= 'z'; c++) {
+                if (s.charAt(i) == c) {
+                    continue;
+                }
+                char[] arr = s.toCharArray();
+                arr[i] = c;
+                String temp = new String(arr);
+
+                if (dict.contains(temp)) {
+                    results.add(temp);
+                }
+            }
+        }
+        return results;
+    }
+}
+// "hit", dict =["hot","dot","dog","lot","log", "dot", "cot"]
+// ["hot", "dot", "cot"]
