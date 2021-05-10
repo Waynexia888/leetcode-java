@@ -69,3 +69,43 @@ public class Solution {
         inorder(root.right, result);
     }
 }
+
+
+////////////////////////////////////////////////////////////
+
+/**
+ * Definition of TreeNode:
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left, right;
+ *     public TreeNode(int val) {
+ *         this.val = val;
+ *         this.left = this.right = null;
+ *     }
+ * }
+ */
+
+public class Solution {
+    /**
+     * @param root: the given BST
+     * @param k: the given k
+     * @return: the kth smallest element in BST
+     */
+    public int kthSmallest(TreeNode root, int k) {
+        // write your code here
+        List<Integer> results = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+
+        TreeNode cur = root;
+        while (cur != null || !stack.isEmpty()) {
+            while (cur != null) {
+                stack.push(cur);
+                cur = cur.left;
+            }
+            cur = stack.pop();
+            results.add(cur.val);
+            cur = cur.right;
+        }
+        return results.get(k - 1);
+    }
+}
