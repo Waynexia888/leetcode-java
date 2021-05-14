@@ -26,3 +26,31 @@ public class Solution {
         return sb.toString();
     }
 }
+
+////////////////////////////////////////////////////
+public class Solution {
+    /*
+     * @param s: A string
+     * @return: A string
+     */
+    public String reverseWords(String s) {
+        // write your code here
+        if (s == null || s.length() == 0) {
+            return s;
+        }
+
+        s = s.trim();
+        String[] arr = s.split("\\s+"); 
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = arr.length - 1; i >= 0; i--) {
+            if (i != 0) {
+                sb.append(arr[i]);
+                sb.append(" ");
+            } else {
+                sb.append(arr[i]);
+            }
+        }
+        return sb.toString();
+    }
+}
