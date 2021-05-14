@@ -33,3 +33,33 @@ public class Solution {
         return maxSum;
     }
 }
+///////////////////////////////////////////////
+
+public class Solution {
+    /**
+     * @param nums: A list of integers
+     * @return: A integer indicate the sum of max subarray
+     */
+    public int maxSubArray(int[] nums) {
+        // write your code here
+        int[] prefixSum = new int[nums.length + 1];
+        for (int i = 0; i < nums.length; i++) {
+            prefixSum[i + 1] = prefixSum[i] + nums[i];
+        }
+
+        int max = Integer.MIN_VALUE;
+        int min = 0;
+        for (int i = 1; i < prefixSum.length; i++) {
+            max = Math.max(max, prefixSum[i] - min);
+            min = Math.min(min, prefixSum[i]);
+        }
+        return max;
+    }
+}
+
+//   [−2,  2, −3, 4, −1,2, 1, −5, 3]
+// [0, -2, 0, -3, 1, 0, 2, 3, -2, 1]
+
+// max = 6
+// min = -3
+// time: O(n); space: O(n)
