@@ -21,3 +21,7 @@ public class Fizz_Buzz {
         return results;
     }
 }
+
+////
+// int to String -> String.valueOf(int x)
+// string to int -> Integer.parseInt(string x)
