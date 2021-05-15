@@ -25,3 +25,32 @@ public class Remove_Element {
         return slow;
     }
 }
+
+/////////////////////////////////////////////////////
+
+public class Solution {
+    /*
+     * @param A: A list of integers
+     * @param elem: An integer
+     * @return: The new length after remove
+     */
+    public int removeElement(int[] A, int elem) {
+        // write your code here
+        if (A == null || A.length == 0) {
+            return 0;
+        }
+
+        int j = 0;
+        for (int i = 0; i < A.length; i++) {
+            if (A[i] != elem) {
+                A[j] = A[i];
+                j++;
+            }
+        }
+        return j;
+    }
+}
+
+// 0, 0, 0, 2, 0, 2, 4, 4
+//                      i 
+//             j
