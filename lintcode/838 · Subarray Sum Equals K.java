@@ -42,20 +42,34 @@ public class Solution {
 // subarray(i, j) = prefixSum[j] - prefixSum[i - 1] = k
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 // prefixSum[x] = sum of subArray(0, x) = nums[0] + nums[1] + ... nums[x]
 //                                      = prefixSum[x - 1] + nums[x]
 // index:           0  1  2
 // nums =          [1, 1, 1]
 // prefixSum =   0  1  2  3
+
+//////////////////////////////////////////////////////////////
+
+public class Solution {
+    /**
+     * @param nums: a list of integer
+     * @param k: an integer
+     * @return: return an integer, denote the number of continuous subarrays whose sum equals to k
+     */
+    public int subarraySumEqualsK(int[] nums, int k) {
+        // write your code here
+        int count = 0;
+        
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(0, 1);
+        int sum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+            map.put(sum, map.getOrDefault(sum, 0) + 1);
+            if (map.containsKey(sum - k)) {
+                count += map.get(sum - k);
+            }
+        }
+        return count;
+    }
+}
