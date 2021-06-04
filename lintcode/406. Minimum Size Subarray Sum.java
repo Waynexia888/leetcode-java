@@ -61,6 +61,59 @@ public class Solution {
 }
 
 //////////////////////////////////////////////////////////////////////
+public class Solution {
+    /**
+     * @param nums: an array of integers
+     * @param s: An integer
+     * @return: an integer representing the minimum size of subarray
+     */
+    public int minimumSize(int[] nums, int s) {
+        // using prefixSum + binary search, time: O(nlogn); space: O(n)
+        int[] prefixSum = new int[nums.length + 1];
+        for (int i = 0; i < nums.length; i++) {
+            prefixSum[i + 1] = prefixSum[i] + nums[i];
+        }
+
+        int minLength = Integer.MAX_VALUE;
+        
+        for (int i = 0; i < nums.length; i++) {
+            // using binary search to find the first index j such that 
+            // prefixSum[j + 1] - prefixSum[i]
+            int j = getEndIndex(prefixSum, i, s);
+            int sum = prefixSum[j + 1] - prefixSum[i];
+            if (sum >= s) {
+                minLength = Math.min(minLength, j - i + 1);
+            }
+            
+        }
+
+        if (minLength == Integer.MAX_VALUE) {
+            return -1;
+        }
+        return minLength;
+    }
+
+    private int getEndIndex(int[] prefixSum, int i, int s) {
+        int start = i, end = prefixSum.length - 2; // (n + 1) - 2 = n - 1
+        while (start + 1 < end) {
+            int mid = start + (end - start) / 2;
+            if (prefixSum[mid + 1] - prefixSum[i] >= s) {
+                end = mid;
+            } else {
+                start = mid;
+            }
+        }
+
+        if (prefixSum[start + 1] - prefixSum[i] >= s) {
+            return start;
+        }
+        return end;
+    }
+}
+
+///////////////////////////////////////////////////////////////////////
+
+
 public class Minimum_Size_Subarray_Sum {
     /**
      * @param nums: an array of integers
@@ -109,30 +162,27 @@ public class Solution {
      * @return: an integer representing the minimum size of subarray
      */
     public int minimumSize(int[] nums, int s) {
-        // 滑动窗口型指针移动题型
-        // time：O(n), 尽管两层循环， 但是j一直往前走，没有返回
-        // space: O(1)
-        if (nums == null || nums.length == 0) {
-            return -1;
-        }
+        // using prefixSum + binary search, time: O(nlogn); space: O(n)
         
-        int i = 0, j = 0;
+        int minLength = Integer.MAX_VALUE;
         int sum = 0;
-        int ans = Integer.MAX_VALUE;
-        for (i = 0; i < nums.length; i++) {
+        int j = 0;
+
+        for (int i = 0; i < nums.length; i++) {
             while (j < nums.length && sum < s) {
                 sum += nums[j];
                 j++;
             }
+
             if (sum >= s) {
-                ans = Math.min(ans, j - i);
+                minLength = Math.min(minLength, j - i);
             }
-            sum -= nums[i];
+           sum -= nums[i]; 
         }
-        
-        if (ans == Integer.MAX_VALUE) {
-            ans = -1;
+
+        if (minLength == Integer.MAX_VALUE) {
+            return -1;
         }
-        return ans;
+        return minLength;
     }
 }
