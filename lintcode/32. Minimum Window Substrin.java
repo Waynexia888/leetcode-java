@@ -6,20 +6,21 @@ public class Solution {
      */
     public String minWindow(String source , String target) {
         // 滑动窗口型双指针类型题
-        // 时间复杂度:O(256n); space O(1)
+        // 时间复杂度:O(256n + m); space O(256m + 256n)
         int ans = Integer.MAX_VALUE;
         String minStr = "";
 
         int[] sourceHash = new int[256];
         int[] targetHash = new int[256];
 
+        // 统计target 字符， 时间复杂度: O(m)
         for (char ch : target.toCharArray()) {
             targetHash[ch]++;
         }
 
-        int i = 0, j = 0;
-
-        for (i = 0; i < source.length(); i++) {
+        // 同向双指针时间复杂度O(256n);
+        int j = 0;
+        for (int i = 0; i < source.length(); i++) {
             while (j < source.length() && !vaild(sourceHash, targetHash)) {
                 sourceHash[source.charAt(j)]++;
                 j++;
@@ -54,7 +55,7 @@ public class Solution {
      * @return: A string denote the minimum window, return "" if there is no such a string
      */
     public String minWindow(String source , String target) {
-        // time: O(n); space: O(n)
+        // time: O(256n + m) = O(n + m), n, m为两串长度; space: O(n + m)
         Map<Character, Integer> sourceMap = new HashMap<>();
         Map<Character, Integer> targetMap = new HashMap<>();
         for (int i = 0; i < target.length(); i++) {
