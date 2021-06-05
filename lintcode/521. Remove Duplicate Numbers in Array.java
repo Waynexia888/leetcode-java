@@ -57,18 +57,19 @@ public class Solution {
         }
 
         Arrays.sort(nums);
+
         int j = 1;
-        int i;
-        for (i = 0; i < nums.length; i++) {
+        for (int i = 0; i < nums.length; i++) {
             while (j < nums.length && nums[j] == nums[i]) {
                 j++;
             }
             if (j >= nums.length) {
                 break;
             }
-            nums[i + 1] = nums[j];
+            if (nums[j] != nums[i]) {
+                nums[i + 1] = nums[j];
+            }
         }
         return i + 1;
-
     }
 }
