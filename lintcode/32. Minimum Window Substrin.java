@@ -44,3 +44,53 @@ public class Solution {
         return true;
     }
 } 
+
+///////////////////////////////////////////////////////////////////////////
+
+public class Solution {
+    /**
+     * @param source : A string
+     * @param target: A string
+     * @return: A string denote the minimum window, return "" if there is no such a string
+     */
+    public String minWindow(String source , String target) {
+        // time: O(n); space: O(n)
+        Map<Character, Integer> sourceMap = new HashMap<>();
+        Map<Character, Integer> targetMap = new HashMap<>();
+        for (int i = 0; i < target.length(); i++) {
+            char c = target.charAt(i);
+            targetMap.put(c, targetMap.getOrDefault(c, 0) + 1);
+        }
+
+        int minLength = Integer.MAX_VALUE;
+        String subStr = "";
+        int matchedChars = 0; // 存放匹配得上(每个字符出现的次数一样，才算匹配得上)的字符数量
+
+        int j = 0;
+        for (int i = 0; i < source.length(); i++) {
+            while (j < source.length() && matchedChars < targetMap.size()) {
+                char c = source.charAt(j);
+                sourceMap.put(c, sourceMap.getOrDefault(c, 0) + 1);
+                // java的hashmap中存放的是Integer对象，应使用equals比较值
+                if (sourceMap.get(c).equals(targetMap.getOrDefault(c, 0))) {
+                    matchedChars++;
+                }
+                j++;
+            }
+
+            if (matchedChars == targetMap.size()) {
+                if (j - i < minLength) {
+                    minLength = Math.min(minLength, j - i);
+                    subStr = source.substring(i, j);
+                }
+            }
+
+            char cc = source.charAt(i);
+            sourceMap.put(cc, sourceMap.get(cc) - 1);
+            if (sourceMap.get(cc).equals(targetMap.getOrDefault(cc, 0) - 1)) {
+                matchedChars--;
+            }
+        }
+        return subStr;
+    }
+}
