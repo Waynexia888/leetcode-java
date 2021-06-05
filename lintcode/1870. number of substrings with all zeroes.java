@@ -27,3 +27,29 @@ public class Solution {
         return ans;
     }
 }
+
+////////////////////////////////////////////////////////////////////
+public class Solution {
+    /**
+     * @param str: the string
+     * @return: the number of substrings 
+     */
+    public int stringCount(String str) {
+        // time: O(n); space: O(1)
+        int results = 0;
+        int j = 1;
+        for (int  i = 0; i < str.length(); i++) {
+            if (str.charAt(i) != '0') {
+                continue;
+            }
+            j = Math.max(j, i + 1);
+            while (j < str.length() && str.charAt(j) == '0') {
+                j++;
+            }
+            if (j == str.length() || str.charAt(j) == '1') {
+                results += j - i;
+            }
+        }
+        return results;
+    }
+}
