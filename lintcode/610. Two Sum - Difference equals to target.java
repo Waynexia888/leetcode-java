@@ -77,3 +77,34 @@ public class Solution {
         return new int[] { -1, -1 };
     }
 }
+
+////////////////////////////////////////////////////////////////////////
+public class Solution {
+    /**
+     * @param nums: an array of Integer
+     * @param target: an integer
+     * @return: [num1, num2] (num1 < num2)
+     */
+    public int[] twoSum7(int[] nums, int target) {
+        // write your code here
+        if (nums == null || nums.length == 0) {
+            return new int[]{-1, -1};
+        }
+
+        target = Math.abs(target);
+        int j = 1;
+        for (int i = 0; i < nums.length; i++) {
+            // j = Math.max(j, i + 1);
+            if (i == j) {
+                j++;
+            }
+            while (j < nums.length && nums[j] - nums[i] < target) {
+                j++;
+            }
+            if (nums[j] - nums[i] == target) {
+                return new int[]{nums[i], nums[j]};
+            }
+        }
+        return new int[]{-1, -1};
+    }
+}
