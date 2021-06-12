@@ -20,6 +20,8 @@ public class UtilizationChecks {
 //      if yes, modify the given instances, then the current index += 10
 // return the instance
 
+// time: O(n); space: O(1)
+
 // The java.lang.Math.ceil(double a) returns the smallest (closest to negative infinity) 
 // double value that is greater than or equal to the argument
 // Math.ceil(125.9) = 126.0
