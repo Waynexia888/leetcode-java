@@ -7,7 +7,7 @@ import java.util.Collections;
 
 class Solution {
     public static List<Integer> optimizingBoxWeights(List<Integer> arr) {
-        // time: O(nlogn)
+        // time: O(n^2 * nlogn)
         List<Integer> results = new ArrayList<>();
         Collections.sort(arr);  // nlogn
         int sum = 0;
