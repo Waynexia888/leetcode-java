@@ -14,9 +14,10 @@ class Solution {
             char[] arr = s.toCharArray();
             Arrays.sort(arr);
             String key = String.valueOf(arr);
-            if (!map.containsKey(key)) {
-                map.put(key, new ArrayList<>());
-            }
+            // if (!map.containsKey(key)) {
+            //     map.put(key, new ArrayList<>());
+            // }
+            map.putIfAbsent(key, new ArrayList<>());
             map.get(key).add(s);
         }
         return new ArrayList(map.values());
