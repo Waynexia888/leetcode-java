@@ -42,7 +42,7 @@ class Solution {
 
 class Solution {
     public int maxSubArray(int[] nums) {
-        // time: O(n); space: O(n)
+        // time: O(n); space: O(1)
         int sum = 0;
         int maxSum = Integer.MIN_VALUE;
         int min = 0;

@@ -57,4 +57,43 @@ class Solution {
 //     first part = true
     
     
-    
+ ////////////////////////////////////////////////////////////////
+ 
+ class Solution {
+    public boolean isNumber(String s) {
+        boolean hasDot = false;
+        
+        int index = 0;
+        if (s.charAt(0) == '+' || s.charAt(0) == '-') {
+            index++;
+        }
+
+        while (index < s.length()) {
+            char c = s.charAt(index);
+            if (c == '+' || c == '-') {
+                return false;
+            } else if (c == '.') {
+                if (hasDot) {
+                    return false;
+                }
+                hasDot = true;
+            } else if (!character.isDigit(c)) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+take care of the sign character?    
+    the sign character must be the first character in the String
+
+check if it is a decimal number?
+    only one dot 
+    check if the current character is digit
+
+check integer
+    check if the current character is digit
+
+time complexity: O(n);
+space complexity: O(1)
