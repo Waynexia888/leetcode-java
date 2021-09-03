@@ -27,3 +27,31 @@ class Solution {
         return results.toArray(new int[results.size()][]);
     }
 }
+
+//////////////////////////////////////////////////////////////////////
+class Solution {
+    public int[][] insert(int[][] intervals, int[] newInterval) {
+        List<int[]> results = new ArrayList<>();
+        
+        List<int[]> list = new ArrayList<>();
+        for (int[] arr : intervals) {
+            list.add(arr);
+        }
+        list.add(newInterval);
+        
+        Collections.sort(list, (a, b) -> (a[0] - b[0]));
+        
+        int[] current = list.get(0);
+        for (int[] next : list) {
+            if (current[1] >= next[0]) { //overlapping
+                current[0] = Math.min(current[0], next[0]);
+                current[1] = Math.max(current[1], next[1]);
+            } else {
+                results.add(current);
+                current = next;
+            }
+        }
+        results.add(current);
+        return results.toArray(new int[results.size()][]);
+    }
+}
