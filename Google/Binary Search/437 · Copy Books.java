@@ -57,3 +57,57 @@ public class Solution {
         return numberOfCopiers <= k;
     }
 }
+
+////////////////////////////////////////////////////////////////
+
+public class Solution {
+    /**
+     * @param pages: an array of integers
+     * @param k: An integer
+     * @return: an integer
+     */
+    public int copyBooks(int[] pages, int k) {
+        // write your code here
+        if (pages == null || pages.length == 0) {
+            return 0;
+        }
+
+        int start = 0, end = 0;
+        int sum = 0;
+        for (int page : pages) {
+            sum += page;
+            start = Math.max(start, page);
+            end = Math.max(end, sum);
+        }
+
+        // 在start和end区间里找到一个最值（时间），使得这些书能在这单位时间里抄完，且抄书员 <= k
+        while (start + 1 < end) {
+            int mid = start + (end - start) / 2;
+            if (numberOfCopiers(pages, mid) <= k) {
+                end = mid;
+            } else {
+                start = mid;
+            }
+        }
+
+        if (numberOfCopiers(pages, start) <= k) {
+            return start;
+        }
+        return end;
+    }
+
+    private int numberOfCopiers(int[] pages, int time) {
+        int copiers = 1;
+        int currentPage = pages[0];
+
+        for (int i = 1; i < pages.length; i++) {
+            if ((currentPage + pages[i]) > time) {
+                copiers++;
+                currentPage = pages[i];
+            } else {
+                currentPage += pages[i];
+            }
+        }
+        return copiers;
+    }
+}
