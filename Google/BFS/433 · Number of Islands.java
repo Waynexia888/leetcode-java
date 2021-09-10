@@ -65,3 +65,48 @@ public class Solution {
 }
 
 // time: O(m * n); space: O(m * n)
+
+////////////////////////////////////DFS//////////////////////////////
+
+public class Solution {
+    /**
+     * @param grid: a boolean 2D matrix
+     * @return: an integer
+     */
+    private final int[][] directions = new int[][]{{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+    public int numIslands(boolean[][] grid) {
+        // write your code here
+        if (grid == null || grid.length == 0 || grid[0] == null || grid[0].length == 0) {
+            return 0;
+        }
+        
+        int rows = grid.length, columns = grid[0].length;
+        boolean[][] visited = new boolean[rows][columns];
+        int number = 0;
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                if (grid[i][j] && !visited[i][j]) {
+                    dfs(grid, i, j, visited, rows, columns);
+                    number++;
+                }
+            }
+        }
+        return number;
+    }
+
+    private void dfs(boolean[][] grid, int x, int y, boolean[][] visited, int rows, int columns) {
+        if (x < 0 || x >= rows || y < 0 || y >= columns || !grid[x][y] || visited[x][y]) {
+            return;
+        }
+
+        visited[x][y] = true;
+        // dfs(grid, x, y + 1, visited, rows, columns);
+        // dfs(grid, x, y - 1, visited, rows, columns);
+        // dfs(grid, x + 1, y, visited, rows, columns);
+        // dfs(grid, x - 1, y, visited, rows, columns);
+        for (int[] direction : directions) {
+            dfs(grid, x + direction[0], y + direction[1], visited, rows, columns);
+        }
+    }
+
+}
