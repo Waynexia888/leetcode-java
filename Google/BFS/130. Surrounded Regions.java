@@ -1,5 +1,5 @@
 Leetcode 130. Surrounded Regions
-
+Lintcode 477 · Surrounded Regions
 class Point {
     int x, y;
     public Point(int x, int y) {
@@ -60,3 +60,52 @@ class Solution {
         }
     }
 }
+
+////////////////////////////////////////////////////////
+
+public class Solution {
+    /*
+     * @param board: board a 2D board containing 'X' and 'O'
+     * @return: nothing
+     */
+    private final int[][] directions = new int[][]{{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+    public void surroundedRegions(char[][] board) {
+        // write your code here
+        if (board == null || board.length == 0 || board[0] == null || board[0].length == 0) {
+            return;
+        } 
+
+        int rows = board.length, columns = board[0].length;
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                if ((i == 0 || i == rows - 1 || j == 0 || j == columns - 1) && board[i][j] == 'O') {
+                    dfs(board, i, j, rows, columns);
+                }
+            }
+        }
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                if (board[i][j] == 'O') {
+                    board[i][j] = 'X';
+                }
+                if (board[i][j] == 'T') {
+                    board[i][j] = 'O';
+                }
+            }
+        }
+    }
+
+    private void dfs(char[][] board, int x, int y, int rows, int columns) {
+        if (x < 0 || x >= rows || y < 0 || y >= columns || board[x][y] != 'O') {
+            return;
+        }
+        board[x][y] = 'T';
+        for (int[] dir : directions) {
+            dfs(board, x + dir[0], y + dir[1], rows, columns);
+        }
+    }
+}
+
+// traverse the matrix, find all border 'o', using dfs to find all connected 'o's, and mark them as 'T'
+// traverse the matrix again, mark all 'o' as 'x', mark all 'T' as 'o'
