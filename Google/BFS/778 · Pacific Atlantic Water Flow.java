@@ -83,3 +83,65 @@ public class Solution {
         }
     }
 }
+
+//////////////////////////////////////////////////////////////////////////////
+public class Solution {
+    /**
+     * @param matrix: the given matrix
+     * @return: The list of grid coordinates
+     */
+    private final int[][] directions = new int[][]{{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+    public List<List<Integer>> pacificAtlantic(int[][] matrix) {
+        // write your code here
+        List<List<Integer>> results = new ArrayList<>();
+        if (matrix == null || matrix.length == 0 || matrix[0] == null || matrix[0].length == 0) {
+            return results;
+        }
+
+        int rows = matrix.length, columns = matrix[0].length;
+        boolean[][] canReachP = new boolean[rows][columns];   //store grid coordinates that can flow to pacific
+        boolean[][] canReachA = new boolean[rows][columns];
+
+        for (int i = 0; i < rows; i++) {
+            dfs(matrix, i, 0, canReachP);
+            dfs(matrix, i, columns - 1, canReachA);
+        }
+
+
+        for (int i = 0; i < columns; i++) {
+            dfs(matrix, 0, i, canReachP);
+            dfs(matrix, rows - 1, i, canReachA);
+        }
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                if (canReachP[i][j] && canReachA[i][j]) {
+                    List<Integer> temp = new ArrayList<>();
+                    temp.add(i);
+                    temp.add(j);
+                    results.add(temp);
+                }
+            }
+        }
+        return results;
+    }
+
+    private void dfs(int[][] matrix, int x, int y, boolean[][] canReach) {
+       if (canReach[x][y]) {
+           return;
+       }
+       
+       canReach[x][y] = true;
+       for (int[] direction : directions) {
+           int nextRow = x + direction[0];
+           int nextCol = y + direction[1];
+           if (nextRow < 0 || nextRow >= matrix.length || nextCol < 0 || nextCol >= matrix[0].length) {
+               continue;
+           }
+           if (matrix[x][y] >  matrix[nextRow][nextCol]) {
+               continue;
+           }
+           dfs(matrix, nextRow, nextCol, canReach);
+       }
+    }
+}
