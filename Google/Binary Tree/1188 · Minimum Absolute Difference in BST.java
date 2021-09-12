@@ -87,4 +87,3 @@ public class Solution {
         }
         return minDiff;
     }
-}
