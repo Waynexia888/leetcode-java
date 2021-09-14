@@ -78,3 +78,42 @@ class Solution {
         
     }
 }
+
+////////////////////////////////////////////////////////////////
+
+class Solution {
+    public int minPathSum(int[][] grid) {
+        if (grid == null || grid.length == 0 || grid[0] == null || grid[0].length == 0) {
+            return 0;
+        }
+        
+        // state: dp[i][j]: the minimim sum from top left (0, 0) to current position (i, j)
+        int m = grid.length, n = grid[0].length;
+        int[][] dp = new int[2][n];   //滚动数组
+        
+        // initialization: (this part can be written in the body)
+        
+        // dp[i][j] = Math,min(dp[i - 1][j] + dp[i][j - 1]) + grid[i][j]
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == 0 && j == 0) {
+                    dp[i % 2][j] = grid[i][j];
+                    continue;
+                }
+                
+                int sum = Integer.MAX_VALUE;
+                if (i > 0) {
+                    sum = Math.min(sum, dp[(i - 1) % 2][j]);
+                }
+                if (j > 0) {
+                    sum = Math.min(sum, dp[i % 2][j - 1]);
+                }
+                dp[i % 2][j] = sum + grid[i][j];
+            }
+        }
+        
+        // answer:
+        return dp[(m - 1) % 2][n - 1];
+        
+    }
+}
