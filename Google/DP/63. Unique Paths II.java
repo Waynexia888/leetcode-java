@@ -55,3 +55,46 @@ class Solution {
 //     if first column, dp[i][j] = dp[i - 1][j]
 //     otherwise, dp[i][j] = dp[i - 1][j] + dp[i][j - 1]
 // Answer: dp[m - 1][n - 1]
+
+///////////////////////////////////////////////////////////////
+
+class Solution {
+    public int uniquePathsWithObstacles(int[][] obstacleGrid) {
+        if (obstacleGrid == null || obstacleGrid.length == 0) {
+            return 0;
+        }
+        if (obstacleGrid[0] == null || obstacleGrid[0].length == 0) {
+            return 0;
+        }
+        // state: dp[i][j]: number of ways that you can reach the currrent grid(i, j)
+        int m = obstacleGrid.length, n = obstacleGrid[0].length;
+        int[][] dp = new int[m][n];
+        
+        // initialization: 
+
+        // function: dp[i][j] = dp[i - 1][j] + dp[i][j - 1]
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (obstacleGrid[i][j] == 1) {
+                    dp[i][j] = 0;
+                    continue;
+                }
+                if (i == 0 && j == 0) {
+                    dp[i][j] = 1;
+                    continue;
+                }
+                
+                dp[i][j] = 0;
+                if (i > 0) {
+                    dp[i][j] += dp[i - 1][j];
+                }
+                if (j > 0) {
+                   dp[i][j] += dp[i][j - 1];
+                }
+            }
+        }
+        
+        // answer:
+        return dp[m - 1][n - 1];
+    }
+}
