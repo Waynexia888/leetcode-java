@@ -1,4 +1,4 @@
-Lintcode 226. Invert Binary Tree
+Leetcode 226. Invert Binary Tree
 
 /**
  * Definition for a binary tree node.
