@@ -160,3 +160,52 @@ class Solution {
         return isLeftBST && isRightBST;
     }
 }
+
+//////////////////////////////////////////////////////////////
+inOrder: iterative
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public boolean isValidBST(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        
+        Stack<TreeNode> stack = new Stack<>();
+        while (root != null) {
+            stack.push(root);
+            root = root.left;
+        }
+        
+        long prev = Long.MIN_VALUE;
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.pop();
+            if (node.val <= prev) {
+                return false;
+            }
+            prev = node.val;
+            if (node.right != null) {
+                TreeNode cur = node.right;
+                while (cur != null) {
+                    stack.push(cur);
+                    cur = cur.left;
+                }
+            }
+        }
+        return true;
+    }
+}
