@@ -1,5 +1,46 @@
 Leetcode 98. Validate Binary Search Tree
 
+preOrder: 不带参数dfs
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    private boolean isBST = true;
+    public boolean isValidBST(TreeNode root) {
+        preOrder(root, Long.MIN_VALUE, Long.MAX_VALUE);
+        return isBST;
+    }
+    
+    private void preOrder(TreeNode root, long min, long max) {
+        if (root == null) {
+            return;
+        }
+        
+        // what to do at current node
+        if (root.val <= min || root.val >= max) {
+            isBST = false;
+            return;
+        }
+        preOrder(root.left, min, root.val);
+        preOrder(root.right, root.val, max);
+    }
+}
+
+preOrder: 带参数dfs
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -17,23 +58,28 @@ Leetcode 98. Validate Binary Search Tree
  */
 class Solution {
     public boolean isValidBST(TreeNode root) {
-       return dfs(root, Long.MIN_VALUE, Long.MAX_VALUE);
+        return preOrder(root, Long.MIN_VALUE, Long.MAX_VALUE);
     }
     
-    private boolean dfs(TreeNode root, long low, long high) {
+    private boolean preOrder(TreeNode root, long min, long max) {
         if (root == null) {
             return true;
         }
         
-        if (root.val <= low || root.val >= high) {
+        // what to do at current node
+        if (root.val <= min || root.val >= max) {
             return false;
         }
-        return dfs(root.left, low, root.val) && dfs(root.right, root.val, high);
+        
+        boolean isLeftBST = preOrder(root.left, min, root.val);
+        boolean isRightBST = preOrder(root.right, root.val, max);
+        return isLeftBST && isRightBST;
     }
 }
 // time: o(n); space: o(n)
 
-////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+inOrder: 带参数的dfs
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -51,6 +97,7 @@ class Solution {
  */
 class Solution {
     private long pre = Long.MIN_VALUE;
+    // private TreeNode pre = null;
     public boolean isValidBST(TreeNode root) {
         return inOrder(root);
     }
@@ -60,16 +107,56 @@ class Solution {
             return true;
         }
         
-        if (!inOrder(root.left)) {
-            return false;
-        }
+        boolean isLeftBST = inOrder(root.left);
         
+        // what to do at current node
         if (root.val <= pre) {
             return false;
         }
         pre = root.val;
-        return inOrder(root.right);
+
+        // if (pre != null && root.val <= pre.val) {
+        //     return false;
+        // }
+        // pre = root;
+        boolean isRightBST = inOrder(root.right);
+        return isLeftBST && isRightBST;
     }
 }
-
-// left, root, right
+/////////////////////////////////////////////////////////
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public boolean isValidBST(TreeNode root) {
+        return inOrder(root, Long.MIN_VALUE, Long.MAX_VALUE);
+    }
+    
+    private boolean inOrder(TreeNode root, long min, long max) {
+        if (root == null) {
+            return true;
+        }
+        
+        boolean isLeftBST = inOrder(root.left, min, root.val);
+        
+        // what to do at current node
+        if (root.val <= min || root.val >= max) {
+            return false;
+        }
+        
+        boolean isRightBST = inOrder(root.right, root.val, max);
+        return isLeftBST && isRightBST;
+    }
+}

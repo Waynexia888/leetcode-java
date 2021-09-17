@@ -52,3 +52,7 @@ class Solution {
         return zigzagOrder;
     }
 }
+
+// Time Complexity: O(N), where NN is the number of nodes in the tree.
+// Space Complexity: O(N) where NN is the number of nodes in the tree.
+
