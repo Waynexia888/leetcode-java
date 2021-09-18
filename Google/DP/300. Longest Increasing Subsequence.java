@@ -32,3 +32,57 @@ class Solution {
         return maxLength;
     }
 }
+
+///////////////////////////////////////////////////////////////
+
+binary search： O(nlogn); space: O(n)
+
+记录一个LIS数组
+LIS[i] 表示长度为i的LIS的末尾的数最小是多少
+最开始的时候，LIS[0] = 负无穷大， LIS[1..n] = 无穷大
+for循环 nums数组， 从左到右依次处理每个数x
+在LIS中找到第一个>= x的LIS[i] （下标)
+将这个LIS[i]更新为x
+
+class Solution {
+    public int lengthOfLIS(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        
+        int n = nums.length;
+        int[] LIS = new int[n + 1];
+        for (int i = 0; i < n + 1; i++) {
+            if (i == 0) {
+                LIS[0] = Integer.MIN_VALUE;
+                continue;
+            }
+            LIS[i] = Integer.MAX_VALUE;
+        }
+        
+        int maxLength = 0;
+        for (int i = 0; i < n; i++) {
+            int index = firstGTE(LIS, nums[i]);
+            LIS[index] = nums[i];
+            maxLength = Math.max(maxLength, index);
+        }
+        return maxLength;
+    }
+    
+    private int firstGTE(int[] nums, int target) {
+        int start = 0, end = nums.length - 1;
+        while (start + 1 < end) {
+            int mid = start + (end - start) / 2;
+            if (nums[mid] >= target) {
+                end = mid;
+            } else {
+                start = mid;
+            }
+        }
+        
+        if (nums[start] >= target) {
+            return start;
+        }
+        return end;
+    }
+}
