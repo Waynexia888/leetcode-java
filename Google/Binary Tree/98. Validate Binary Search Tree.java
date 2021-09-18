@@ -1,6 +1,6 @@
 Leetcode 98. Validate Binary Search Tree
 
-preOrder: 不带参数dfs
+preOrder: 没有返回值的dfs
 
 /**
  * Definition for a binary tree node.
@@ -39,7 +39,7 @@ class Solution {
     }
 }
 
-preOrder: 带参数dfs
+preOrder: 有返回值的dfs
 
 /**
  * Definition for a binary tree node.
@@ -79,7 +79,7 @@ class Solution {
 // time: o(n); space: o(n)
 
 ////////////////////////////////////////////////////////////////////
-inOrder: 带参数的dfs
+inOrder: 有返回值的dfs
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
