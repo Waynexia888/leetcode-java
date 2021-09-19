@@ -29,3 +29,5 @@ class Solution {
         return maxEdge * maxEdge;
     }
 }
+
+// time: O(MN); space: O(MN)
